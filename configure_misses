@@ -1,0 +1,58 @@
+Configure miss: if /usr/bin/g++ static flag -static works
+Configure miss: x86_64-generic-linux-gnu-mcs
+Configure miss: mcs
+Configure miss: x86_64-generic-linux-gnu-mcs
+Configure miss: mcs
+Configure miss: asm/hwcap.h usability
+Configure miss: asm/hwcap.h presence
+Configure miss: asm/hwcap.h
+Configure miss: TCP_NOPUSH in netinet/tcp.h
+Configure miss: __forceinline
+Configure miss: pthread_getcpuclockid
+Configure miss: UNWIND
+Configure miss: native libunwind
+Configure miss: whether to build OSX spinlock code
+Configure miss: isfinite
+Configure miss: whether Cocoa framework is supported
+Configure miss: whether to enable OpenGL Cocoa rendering backend
+Configure miss: whether OpenGL Cocoa rendering backend will be built
+Configure miss: whether to enable OpenGL SDL rendering backend
+Configure miss: whether OpenGL SDL rendering backend will be built
+Configure miss: whether to enable Software GDI rendering backend
+Configure miss: whether Software GDI rendering backend will be built
+Configure miss: whether to enable Software DirectDraw rendering backend
+Configure miss: whether Software DirectDraw rendering backend will be built
+Configure miss: whether to enable Wayland Egl rendering backend
+Configure miss: whether Wayland Egl rendering backend will be built
+Configure miss: whether to enable Wayland Shm rendering backend
+Configure miss: whether Wayland Shm rendering backend will be built
+Configure miss: whether to enable Drm rendering backend
+Configure miss: whether Drm rendering backend will be built
+Configure miss: whether to enable OpenGL Drm rendering backend
+Configure miss: whether OpenGL Drm rendering backend will be built
+Configure miss: whether to enable OpenGL Fb rendering backend
+Configure miss: whether OpenGL Fb rendering backend will be built
+Configure miss: whether to enable Gif image loader
+Configure miss: whether Gif image loader will be built
+Configure miss: whether JP2K image loader will be built
+Configure miss: whether to enable WEBP image loader
+Configure miss: whether WEBP image loader will be built
+Configure miss: winsock2.h usability
+Configure miss: winsock2.h presence
+Configure miss: Use old libudev API (before 199)
+Configure miss: Use old libmount API (before 2.19.0)
+Configure miss: Use libmount 2.19.0 API
+Configure miss: SCIM
+Configure miss: kevent
+Configure miss: whether to enable FB backend
+Configure miss: whether to build FB backend
+Configure miss: whether to enable SDL backend
+Configure miss: whether to build SDL backend
+Configure miss: whether to enable Cocoa backend
+Configure miss: whether to build Cocoa backend
+Configure miss: whether to enable Win32 backend
+Configure miss: whether to build Win32 backend
+Configure miss: whether to enable Wl2 backend
+Configure miss: whether to build Wl2 backend
+Configure miss: whether to enable DRM backend
+Configure miss: whether to build DRM backend

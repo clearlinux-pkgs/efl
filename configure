@@ -1,0 +1,3 @@
+CXX=/usr/bin/g++
+--disable-image-loader-gif
+--disable-physics
