@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.22.2
-Release  : 1
+Release  : 2
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Summary  : Enlightenment Foundation Libraries
@@ -128,31 +128,49 @@ services components for the efl package.
 
 %prep
 %setup -q -n efl-1.22.2
+pushd ..
+cp -a efl-1.22.2 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557697419
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export SOURCE_DATE_EPOCH=1557722653
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static CXX=/usr/bin/g++ \
 --disable-image-loader-gif \
 --disable-physics
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=haswell"
+export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
+export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+%configure --disable-static CXX=/usr/bin/g++ \
+--disable-image-loader-gif \
+--disable-physics
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
+cd ../buildavx2;
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1557697419
+export SOURCE_DATE_EPOCH=1557722653
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efl
 cp licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.BSD
@@ -163,6 +181,9 @@ cp licenses/COPYING.NGINX-MIT %{buildroot}/usr/share/package-licenses/efl/licens
 cp licenses/COPYING.SMALL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.SMALL
 cp src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_libdrm_LICENSE
 cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_lz4_LICENSE
+pushd ../buildavx2/
+%make_install_avx2
+popd
 %make_install
 %find_lang efl
 
@@ -316,6 +337,41 @@ cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_s
 /usr/bin/ethumb
 /usr/bin/ethumbd
 /usr/bin/ethumbd_client
+/usr/bin/haswell/ecore_evas_convert
+/usr/bin/haswell/edje_cc
+/usr/bin/haswell/edje_codegen
+/usr/bin/haswell/edje_decc
+/usr/bin/haswell/edje_external_inspector
+/usr/bin/haswell/edje_inspector
+/usr/bin/haswell/edje_pick
+/usr/bin/haswell/edje_player
+/usr/bin/haswell/edje_watch
+/usr/bin/haswell/eet
+/usr/bin/haswell/eetpack
+/usr/bin/haswell/eeze_disk_ls
+/usr/bin/haswell/eeze_mount
+/usr/bin/haswell/eeze_scanner
+/usr/bin/haswell/eeze_scanner_monitor
+/usr/bin/haswell/eeze_umount
+/usr/bin/haswell/efl_debug
+/usr/bin/haswell/efl_debugd
+/usr/bin/haswell/efreetd
+/usr/bin/haswell/eina_btlog
+/usr/bin/haswell/eina_modinfo
+/usr/bin/haswell/eldbus-codegen
+/usr/bin/haswell/elementary_codegen
+/usr/bin/haswell/elementary_config
+/usr/bin/haswell/elementary_quicklaunch
+/usr/bin/haswell/elementary_run
+/usr/bin/haswell/elementary_test
+/usr/bin/haswell/elm_prefs_cc
+/usr/bin/haswell/elua
+/usr/bin/haswell/embryo_cc
+/usr/bin/haswell/eolian_cxx
+/usr/bin/haswell/eolian_gen
+/usr/bin/haswell/ethumb
+/usr/bin/haswell/ethumbd
+/usr/bin/haswell/ethumbd_client
 /usr/bin/vieet
 
 %files data
@@ -3089,6 +3145,25 @@ cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_s
 /usr/lib64/cmake/Evas/EvasConfigVersion.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfig.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfigVersion.cmake
+/usr/lib64/haswell/libecore.so
+/usr/lib64/haswell/libecore_audio.so
+/usr/lib64/haswell/libecore_con.so
+/usr/lib64/haswell/libecore_evas.so
+/usr/lib64/haswell/libecore_ipc.so
+/usr/lib64/haswell/libecore_x.so
+/usr/lib64/haswell/libector.so
+/usr/lib64/haswell/libedje.so
+/usr/lib64/haswell/libeet.so
+/usr/lib64/haswell/libefl.so
+/usr/lib64/haswell/libeina.so
+/usr/lib64/haswell/libeio.so
+/usr/lib64/haswell/libeldbus.so
+/usr/lib64/haswell/libelementary.so
+/usr/lib64/haswell/libembryo.so
+/usr/lib64/haswell/libemile.so
+/usr/lib64/haswell/libemotion.so
+/usr/lib64/haswell/libethumb.so
+/usr/lib64/haswell/libevas.so
 /usr/lib64/libecore.so
 /usr/lib64/libecore_audio.so
 /usr/lib64/libecore_avahi.so
@@ -3178,29 +3253,90 @@ cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_s
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/ecore/system/systemd/v-1.22/haswell/module.so
 /usr/lib64/ecore/system/systemd/v-1.22/module.so
+/usr/lib64/ecore/system/upower/v-1.22/haswell/module.so
 /usr/lib64/ecore/system/upower/v-1.22/module.so
+/usr/lib64/ecore_evas/engines/extn/v-1.22/haswell/module.so
 /usr/lib64/ecore_evas/engines/extn/v-1.22/module.so
+/usr/lib64/ecore_evas/engines/x/v-1.22/haswell/module.so
 /usr/lib64/ecore_evas/engines/x/v-1.22/module.so
+/usr/lib64/ecore_imf/modules/ibus/v-1.22/haswell/module.so
 /usr/lib64/ecore_imf/modules/ibus/v-1.22/module.so
+/usr/lib64/ecore_imf/modules/xim/v-1.22/haswell/module.so
 /usr/lib64/ecore_imf/modules/xim/v-1.22/module.so
+/usr/lib64/edje/modules/elm/v-1.22/haswell/module.so
 /usr/lib64/edje/modules/elm/v-1.22/module.so
+/usr/lib64/edje/modules/emotion/v-1.22/haswell/module.so
 /usr/lib64/edje/modules/emotion/v-1.22/module.so
+/usr/lib64/eeze/modules/sensor/fake/v-1.22/haswell/module.so
 /usr/lib64/eeze/modules/sensor/fake/v-1.22/module.so
+/usr/lib64/eeze/modules/sensor/udev/v-1.22/haswell/module.so
 /usr/lib64/eeze/modules/sensor/udev/v-1.22/module.so
+/usr/lib64/elementary/modules/access_output/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/access_output/v-1.22/module.so
+/usr/lib64/elementary/modules/clock_input_ctxpopup/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/clock_input_ctxpopup/v-1.22/module.so
+/usr/lib64/elementary/modules/prefs/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/prefs/v-1.22/module.so
+/usr/lib64/elementary/modules/test_entry/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/test_entry/v-1.22/module.so
+/usr/lib64/elementary/modules/test_map/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/test_map/v-1.22/module.so
+/usr/lib64/elementary/modules/web/none/v-1.22/haswell/module.so
 /usr/lib64/elementary/modules/web/none/v-1.22/module.so
+/usr/lib64/emotion/modules/gstreamer1/v-1.22/haswell/module.so
 /usr/lib64/emotion/modules/gstreamer1/v-1.22/module.so
+/usr/lib64/ethumb/modules/emotion/v-1.22/haswell/module.so
 /usr/lib64/ethumb/modules/emotion/v-1.22/module.so
+/usr/lib64/evas/modules/engines/gl_generic/v-1.22/haswell/module.so
 /usr/lib64/evas/modules/engines/gl_generic/v-1.22/module.so
+/usr/lib64/evas/modules/engines/gl_x11/v-1.22/haswell/module.so
 /usr/lib64/evas/modules/engines/gl_x11/v-1.22/module.so
+/usr/lib64/evas/modules/engines/software_x11/v-1.22/haswell/module.so
 /usr/lib64/evas/modules/engines/software_x11/v-1.22/module.so
+/usr/lib64/evas/modules/image_loaders/tiff/v-1.22/haswell/module.so
 /usr/lib64/evas/modules/image_loaders/tiff/v-1.22/module.so
+/usr/lib64/evas/modules/image_savers/tiff/v-1.22/haswell/module.so
 /usr/lib64/evas/modules/image_savers/tiff/v-1.22/module.so
+/usr/lib64/haswell/libecore.so.1
+/usr/lib64/haswell/libecore.so.1.22.2
+/usr/lib64/haswell/libecore_audio.so.1
+/usr/lib64/haswell/libecore_audio.so.1.22.2
+/usr/lib64/haswell/libecore_con.so.1
+/usr/lib64/haswell/libecore_con.so.1.22.2
+/usr/lib64/haswell/libecore_evas.so.1
+/usr/lib64/haswell/libecore_evas.so.1.22.2
+/usr/lib64/haswell/libecore_ipc.so.1
+/usr/lib64/haswell/libecore_ipc.so.1.22.2
+/usr/lib64/haswell/libecore_x.so.1
+/usr/lib64/haswell/libecore_x.so.1.22.2
+/usr/lib64/haswell/libector.so.1
+/usr/lib64/haswell/libector.so.1.22.2
+/usr/lib64/haswell/libedje.so.1
+/usr/lib64/haswell/libedje.so.1.22.2
+/usr/lib64/haswell/libeet.so.1
+/usr/lib64/haswell/libeet.so.1.22.2
+/usr/lib64/haswell/libefl.so.1
+/usr/lib64/haswell/libefl.so.1.22.2
+/usr/lib64/haswell/libeina.so.1
+/usr/lib64/haswell/libeina.so.1.22.2
+/usr/lib64/haswell/libeio.so.1
+/usr/lib64/haswell/libeio.so.1.22.2
+/usr/lib64/haswell/libeldbus.so.1
+/usr/lib64/haswell/libeldbus.so.1.22.2
+/usr/lib64/haswell/libelementary.so.1
+/usr/lib64/haswell/libelementary.so.1.22.2
+/usr/lib64/haswell/libembryo.so.1
+/usr/lib64/haswell/libembryo.so.1.22.2
+/usr/lib64/haswell/libemile.so.1
+/usr/lib64/haswell/libemile.so.1.22.2
+/usr/lib64/haswell/libemotion.so.1
+/usr/lib64/haswell/libemotion.so.1.22.2
+/usr/lib64/haswell/libethumb.so.1
+/usr/lib64/haswell/libethumb.so.1.22.2
+/usr/lib64/haswell/libevas.so.1
+/usr/lib64/haswell/libevas.so.1.22.2
 /usr/lib64/libecore.so.1
 /usr/lib64/libecore.so.1.22.2
 /usr/lib64/libecore_audio.so.1
