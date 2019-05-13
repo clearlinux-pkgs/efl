@@ -4,3 +4,5 @@ libjpeg-turbo-dev
 fribidi-dev
 gstreamer-dev
 gst-plugins-base-dev
+SDL-dev
+SDL2-dev

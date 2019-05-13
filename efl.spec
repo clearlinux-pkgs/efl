@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.22.2
-Release  : 2
+Release  : 3
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Summary  : Enlightenment Foundation Libraries
@@ -16,6 +16,8 @@ Requires: efl-lib = %{version}-%{release}
 Requires: efl-license = %{version}-%{release}
 Requires: efl-locales = %{version}-%{release}
 Requires: efl-services = %{version}-%{release}
+BuildRequires : SDL-dev
+BuildRequires : SDL2-dev
 BuildRequires : dbus-dev
 BuildRequires : doxygen
 BuildRequires : fribidi-dev
@@ -39,6 +41,7 @@ BuildRequires : pkgconfig(librsvg-2.0)
 BuildRequires : pkgconfig(libspectre)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libudev)
+BuildRequires : pkgconfig(libvlc)
 BuildRequires : pkgconfig(libvncserver)
 BuildRequires : pkgconfig(luajit)
 BuildRequires : pkgconfig(mount)
@@ -137,7 +140,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557722653
+export SOURCE_DATE_EPOCH=1557762092
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -147,7 +150,9 @@ export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-m
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static CXX=/usr/bin/g++ \
 --disable-image-loader-gif \
---disable-physics
+--disable-physics \
+--enable-pixman \
+--enable-libvlc
 make  %{?_smp_mflags}
 
 unset PKG_CONFIG_PATH
@@ -157,7 +162,9 @@ export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
 export LDFLAGS="$LDFLAGS -m64 -march=haswell"
 %configure --disable-static CXX=/usr/bin/g++ \
 --disable-image-loader-gif \
---disable-physics
+--disable-physics \
+--enable-pixman \
+--enable-libvlc
 make  %{?_smp_mflags}
 popd
 %check
@@ -170,7 +177,7 @@ cd ../buildavx2;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1557722653
+export SOURCE_DATE_EPOCH=1557762092
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efl
 cp licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.BSD
@@ -3287,6 +3294,8 @@ popd
 /usr/lib64/elementary/modules/web/none/v-1.22/module.so
 /usr/lib64/emotion/modules/gstreamer1/v-1.22/haswell/module.so
 /usr/lib64/emotion/modules/gstreamer1/v-1.22/module.so
+/usr/lib64/emotion/modules/libvlc/v-1.22/haswell/module.so
+/usr/lib64/emotion/modules/libvlc/v-1.22/module.so
 /usr/lib64/ethumb/modules/emotion/v-1.22/haswell/module.so
 /usr/lib64/ethumb/modules/emotion/v-1.22/module.so
 /usr/lib64/evas/modules/engines/gl_generic/v-1.22/haswell/module.so

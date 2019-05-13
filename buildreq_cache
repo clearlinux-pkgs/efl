@@ -5,4 +5,5 @@ libXScrnSaver-dev
 libXcursor-dev
 libXtst-dev
 openssl-dev
+pkgconfig(libvlc)
 tiff-dev

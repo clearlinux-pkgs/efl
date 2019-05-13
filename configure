@@ -2,7 +2,4 @@ CXX=/usr/bin/g++
 --disable-image-loader-gif
 --disable-physics
 --enable-pixman
---enable-drm
---enable-gl-drm
---enable-egl
 --enable-libvlc
