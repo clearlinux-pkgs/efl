@@ -4,12 +4,12 @@
 #
 Name     : efl
 Version  : 1.22.2
-Release  : 3
+Release  : 4
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.2.tar.xz
 Summary  : Enlightenment Foundation Libraries
 Group    : Development/Tools
-License  : BSD-2-Clause FTL GPL-2.0 LGPL-2.1 MIT
+License  : BSD-2-Clause FTL GPL-2.0 LGPL-2.1 MIT Zlib
 Requires: efl-bin = %{version}-%{release}
 Requires: efl-data = %{version}-%{release}
 Requires: efl-lib = %{version}-%{release}
@@ -139,8 +139,9 @@ popd
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557762092
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562152802
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -168,7 +169,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=haswell"
 make  %{?_smp_mflags}
 popd
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -177,7 +178,7 @@ cd ../buildavx2;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1557762092
+export SOURCE_DATE_EPOCH=1562152802
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efl
 cp licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.BSD
@@ -187,12 +188,16 @@ cp licenses/COPYING.LGPL %{buildroot}/usr/share/package-licenses/efl/licenses_CO
 cp licenses/COPYING.NGINX-MIT %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.NGINX-MIT
 cp licenses/COPYING.SMALL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.SMALL
 cp src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_libdrm_LICENSE
+cp src/static_libs/libunibreak/LICENCE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_libunibreak_LICENCE
 cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_lz4_LICENSE
 pushd ../buildavx2/
 %make_install_avx2
 popd
 %make_install
 %find_lang efl
+## install_append content
+chmod -R -s %{buildroot}/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -3426,6 +3431,7 @@ popd
 /usr/share/package-licenses/efl/licenses_COPYING.NGINX-MIT
 /usr/share/package-licenses/efl/licenses_COPYING.SMALL
 /usr/share/package-licenses/efl/src_static_libs_libdrm_LICENSE
+/usr/share/package-licenses/efl/src_static_libs_libunibreak_LICENCE
 /usr/share/package-licenses/efl/src_static_libs_lz4_LICENSE
 
 %files services
