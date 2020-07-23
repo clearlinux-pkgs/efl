@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.22.5
-Release  : 7
+Release  : 8
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Summary  : Enlightenment Foundation Libraries
