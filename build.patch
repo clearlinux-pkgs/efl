@@ -1,0 +1,11 @@
+--- efl-1.22.5/src/bin/elementary/test_ui_clock.c~	2019-04-17 17:01:13.000000000 +0000
++++ efl-1.22.5/src/bin/elementary/test_ui_clock.c	2020-07-23 18:15:28.632571400 +0000
+@@ -6,7 +6,7 @@
+ 
+ /* A simple test, just displaying clock in its default format */
+ 
+-Evas_Object *dt1, *dt2, *dt3, *dt4;
++static Evas_Object *dt1, *dt2, *dt3, *dt4;
+ 
+ static void
+ _changed_cb(void *data EINA_UNUSED, const Efl_Event *ev EINA_UNUSED)

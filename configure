@@ -3,3 +3,4 @@ CXX=/usr/bin/g++
 --disable-physics
 --enable-pixman
 --enable-libvlc
+--with-tests=none

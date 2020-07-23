@@ -9,8 +9,6 @@ Configure miss: asm/hwcap.h
 Configure miss: TCP_NOPUSH in netinet/tcp.h
 Configure miss: __forceinline
 Configure miss: pthread_getcpuclockid
-Configure miss: UNWIND
-Configure miss: native libunwind
 Configure miss: whether to build OSX spinlock code
 Configure miss: isfinite
 Configure miss: whether Cocoa framework is supported
@@ -67,8 +65,6 @@ Configure miss: asm/hwcap.h
 Configure miss: TCP_NOPUSH in netinet/tcp.h
 Configure miss: __forceinline
 Configure miss: pthread_getcpuclockid
-Configure miss: UNWIND
-Configure miss: native libunwind
 Configure miss: whether to build OSX spinlock code
 Configure miss: isfinite
 Configure miss: whether Cocoa framework is supported

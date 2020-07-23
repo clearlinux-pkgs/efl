@@ -32,7 +32,7 @@ libpixman-1.so.0
 libpng16.so.16
 libpoppler-cpp.so.0
 libpthread.so.0
-libraw.so.19
+libraw.so.20
 librsvg-2.so.2
 librt.so.1
 libspectre.so.1
@@ -41,5 +41,7 @@ libstdc++.so.6
 libsystemd.so.0
 libtiff.so.5
 libudev.so.1
+libunwind-x86_64.so.8
+libunwind.so.8
 libvlc.so.5
 libz.so.1

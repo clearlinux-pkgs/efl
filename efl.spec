@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.22.5
-Release  : 10
+Release  : 11
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Summary  : Enlightenment Foundation Libraries
@@ -41,6 +41,7 @@ BuildRequires : pkgconfig(librsvg-2.0)
 BuildRequires : pkgconfig(libspectre)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libudev)
+BuildRequires : pkgconfig(libunwind)
 BuildRequires : pkgconfig(libvlc)
 BuildRequires : pkgconfig(libvncserver)
 BuildRequires : pkgconfig(luajit)
@@ -54,6 +55,7 @@ BuildRequires : pkgconfig(xrandr)
 BuildRequires : pkgconfig(xshmfence)
 BuildRequires : sed
 BuildRequires : tiff-dev
+Patch1: build.patch
 
 %description
 The Enlightenment Foundation Libraries are a collection of libraries
@@ -88,7 +90,6 @@ Requires: efl-lib = %{version}-%{release}
 Requires: efl-bin = %{version}-%{release}
 Requires: efl-data = %{version}-%{release}
 Provides: efl-devel = %{version}-%{release}
-Requires: efl = %{version}-%{release}
 Requires: efl = %{version}-%{release}
 
 %description dev
@@ -131,6 +132,8 @@ services components for the efl package.
 
 %prep
 %setup -q -n efl-1.22.5
+cd %{_builddir}/efl-1.22.5
+%patch1 -p1
 pushd ..
 cp -a efl-1.22.5 buildavx2
 popd
@@ -140,57 +143,51 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568861333
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1595529523
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 %configure --disable-static CXX=/usr/bin/g++ \
 --disable-image-loader-gif \
 --disable-physics \
 --enable-pixman \
---enable-libvlc
+--enable-libvlc \
+--with-tests=none
 make  %{?_smp_mflags}
 
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=haswell"
 export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
+export FFLAGS="$FFLAGS -m64 -march=haswell"
+export FCFLAGS="$FCFLAGS -m64 -march=haswell"
 export LDFLAGS="$LDFLAGS -m64 -march=haswell"
 %configure --disable-static CXX=/usr/bin/g++ \
 --disable-image-loader-gif \
 --disable-physics \
 --enable-pixman \
---enable-libvlc
+--enable-libvlc \
+--with-tests=none
 make  %{?_smp_mflags}
 popd
-%check
-export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
-cd ../buildavx2;
-make VERBOSE=1 V=1 %{?_smp_mflags} check || :
-
 %install
-export SOURCE_DATE_EPOCH=1568861333
+export SOURCE_DATE_EPOCH=1595529523
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efl
-cp licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.BSD
-cp licenses/COPYING.FTL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.FTL
-cp licenses/COPYING.GPL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.GPL
-cp licenses/COPYING.LGPL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.LGPL
-cp licenses/COPYING.NGINX-MIT %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.NGINX-MIT
-cp licenses/COPYING.SMALL %{buildroot}/usr/share/package-licenses/efl/licenses_COPYING.SMALL
-cp src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_libdrm_LICENSE
-cp src/static_libs/libunibreak/LICENCE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_libunibreak_LICENCE
-cp src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/src_static_libs_lz4_LICENSE
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/8183e75e4fcf4799d0e4fa51b74855edc5eb8b87
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.FTL %{buildroot}/usr/share/package-licenses/efl/52f4f83b6ebd38db17371a09ffe90ce4594505a3
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.GPL %{buildroot}/usr/share/package-licenses/efl/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.LGPL %{buildroot}/usr/share/package-licenses/efl/5d1a0e378eba39192d02bc872f727c2ee8a2f0b7
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.NGINX-MIT %{buildroot}/usr/share/package-licenses/efl/1a00a507fb89bb0018c092d6835077d541e76dc2
+cp %{_builddir}/efl-1.22.5/licenses/COPYING.SMALL %{buildroot}/usr/share/package-licenses/efl/49d7220235cd5c5d99df26599117b80fb2930593
+cp %{_builddir}/efl-1.22.5/src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/070d60bcc974c1527f5c4bc7688b0866c957202c
+cp %{_builddir}/efl-1.22.5/src/static_libs/libunibreak/LICENCE %{buildroot}/usr/share/package-licenses/efl/33189a010ed0fd8d694e3337af3d1ecf5f04c427
+cp %{_builddir}/efl-1.22.5/src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/01e23675a9596a3a4571d3ed84d102fb6cb68181
 pushd ../buildavx2/
 %make_install_avx2
 popd
@@ -3417,15 +3414,15 @@ chmod -R -s %{buildroot}/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/efl/licenses_COPYING.BSD
-/usr/share/package-licenses/efl/licenses_COPYING.FTL
-/usr/share/package-licenses/efl/licenses_COPYING.GPL
-/usr/share/package-licenses/efl/licenses_COPYING.LGPL
-/usr/share/package-licenses/efl/licenses_COPYING.NGINX-MIT
-/usr/share/package-licenses/efl/licenses_COPYING.SMALL
-/usr/share/package-licenses/efl/src_static_libs_libdrm_LICENSE
-/usr/share/package-licenses/efl/src_static_libs_libunibreak_LICENCE
-/usr/share/package-licenses/efl/src_static_libs_lz4_LICENSE
+/usr/share/package-licenses/efl/01e23675a9596a3a4571d3ed84d102fb6cb68181
+/usr/share/package-licenses/efl/070d60bcc974c1527f5c4bc7688b0866c957202c
+/usr/share/package-licenses/efl/1a00a507fb89bb0018c092d6835077d541e76dc2
+/usr/share/package-licenses/efl/33189a010ed0fd8d694e3337af3d1ecf5f04c427
+/usr/share/package-licenses/efl/49d7220235cd5c5d99df26599117b80fb2930593
+/usr/share/package-licenses/efl/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/efl/52f4f83b6ebd38db17371a09ffe90ce4594505a3
+/usr/share/package-licenses/efl/5d1a0e378eba39192d02bc872f727c2ee8a2f0b7
+/usr/share/package-licenses/efl/8183e75e4fcf4799d0e4fa51b74855edc5eb8b87
 
 %files services
 %defattr(-,root,root,-)
