@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.22.5
-Release  : 12
+Release  : 13
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.22.5.tar.xz
 Summary  : Enlightenment Foundation Libraries
@@ -143,7 +143,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595529523
+export SOURCE_DATE_EPOCH=1622846400
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -176,7 +176,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=haswell"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1595529523
+export SOURCE_DATE_EPOCH=1622846400
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/efl
 cp %{_builddir}/efl-1.22.5/licenses/COPYING.BSD %{buildroot}/usr/share/package-licenses/efl/8183e75e4fcf4799d0e4fa51b74855edc5eb8b87
@@ -3151,19 +3151,16 @@ chmod -R -s %{buildroot}/
 /usr/lib64/haswell/libecore_audio.so
 /usr/lib64/haswell/libecore_con.so
 /usr/lib64/haswell/libecore_evas.so
-/usr/lib64/haswell/libecore_ipc.so
 /usr/lib64/haswell/libecore_x.so
 /usr/lib64/haswell/libector.so
 /usr/lib64/haswell/libedje.so
 /usr/lib64/haswell/libeet.so
 /usr/lib64/haswell/libefl.so
 /usr/lib64/haswell/libeina.so
-/usr/lib64/haswell/libeio.so
-/usr/lib64/haswell/libeldbus.so
 /usr/lib64/haswell/libelementary.so
-/usr/lib64/haswell/libembryo.so
 /usr/lib64/haswell/libemile.so
 /usr/lib64/haswell/libemotion.so
+/usr/lib64/haswell/libeolian.so
 /usr/lib64/haswell/libethumb.so
 /usr/lib64/haswell/libevas.so
 /usr/lib64/libecore.so
@@ -3311,8 +3308,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/haswell/libecore_con.so.1.22.5
 /usr/lib64/haswell/libecore_evas.so.1
 /usr/lib64/haswell/libecore_evas.so.1.22.5
-/usr/lib64/haswell/libecore_ipc.so.1
-/usr/lib64/haswell/libecore_ipc.so.1.22.5
 /usr/lib64/haswell/libecore_x.so.1
 /usr/lib64/haswell/libecore_x.so.1.22.5
 /usr/lib64/haswell/libector.so.1
@@ -3325,18 +3320,14 @@ chmod -R -s %{buildroot}/
 /usr/lib64/haswell/libefl.so.1.22.5
 /usr/lib64/haswell/libeina.so.1
 /usr/lib64/haswell/libeina.so.1.22.5
-/usr/lib64/haswell/libeio.so.1
-/usr/lib64/haswell/libeio.so.1.22.5
-/usr/lib64/haswell/libeldbus.so.1
-/usr/lib64/haswell/libeldbus.so.1.22.5
 /usr/lib64/haswell/libelementary.so.1
 /usr/lib64/haswell/libelementary.so.1.22.5
-/usr/lib64/haswell/libembryo.so.1
-/usr/lib64/haswell/libembryo.so.1.22.5
 /usr/lib64/haswell/libemile.so.1
 /usr/lib64/haswell/libemile.so.1.22.5
 /usr/lib64/haswell/libemotion.so.1
 /usr/lib64/haswell/libemotion.so.1.22.5
+/usr/lib64/haswell/libeolian.so.1
+/usr/lib64/haswell/libeolian.so.1.22.5
 /usr/lib64/haswell/libethumb.so.1
 /usr/lib64/haswell/libethumb.so.1.22.5
 /usr/lib64/haswell/libevas.so.1
