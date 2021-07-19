@@ -28,6 +28,7 @@ libjpeg.so.62
 libluajit-5.1.so.2
 libm.so.6
 libmount.so.1
+libmvec.so.1
 libpixman-1.so.0
 libpng16.so.16
 libpoppler-cpp.so.0
