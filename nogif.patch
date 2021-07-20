@@ -1,0 +1,46 @@
+--- efl-1.25.1/src/lib/evas/meson.build~	2020-10-08 08:41:34.000000000 +0000
++++ efl-1.25.1/src/lib/evas/meson.build	2021-07-20 16:15:18.613184885 +0000
+@@ -6,7 +6,6 @@
+ 
+ png = dependency('libpng')
+ tiff = dependency('libtiff-4', required: get_option('evas-loaders-disabler').contains('tiff') == false)
+-giflib = cc.find_library('gif')
+ webp = dependency('libwebp', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+ webpdemux = dependency('libwebpdemux', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+ libopenjp2 = dependency('libopenjp2', required: get_option('evas-loaders-disabler').contains('jp2k') == false)
+@@ -17,7 +16,6 @@
+      ['bmp',     'shared', []],
+      ['eet',     'static', [eet]],
+      ['generic', 'shared', [rt]],
+-     ['gif',     'shared', [giflib]],
+      ['ico',     'shared', []],
+      ['jpeg',    'static', [jpeg]],
+      ['jp2k',    'shared', [libopenjp2]],
+--- efl-1.25.1/src/lib/evas/meson.build~	2021-07-20 16:15:18.000000000 +0000
++++ efl-1.25.1/src/lib/evas/meson.build	2021-07-20 16:26:41.836175372 +0000
+@@ -8,17 +8,13 @@
+ tiff = dependency('libtiff-4', required: get_option('evas-loaders-disabler').contains('tiff') == false)
+ webp = dependency('libwebp', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+ webpdemux = dependency('libwebpdemux', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+-libopenjp2 = dependency('libopenjp2', required: get_option('evas-loaders-disabler').contains('jp2k') == false)
+-libavif = dependency('libavif', required: get_option('evas-loaders-disabler').contains('avif') == false)
+ 
+ evas_image_loaders_file = [
+-     ['avif',    'shared', [libavif]],
+      ['bmp',     'shared', []],
+      ['eet',     'static', [eet]],
+      ['generic', 'shared', [rt]],
+      ['ico',     'shared', []],
+      ['jpeg',    'static', [jpeg]],
+-     ['jp2k',    'shared', [libopenjp2]],
+      ['pmaps',   'shared', []],
+      ['png',     'static', [png]],
+      ['psd',     'shared', []],
+@@ -31,7 +27,6 @@
+ ]
+ 
+ evas_image_savers_file = [
+-     ['avif',    'shared', [libavif]],
+      ['eet',     'static', [eet]],
+      ['jpeg',    'static', [jpeg]],
+      ['png',     'static', [png]],

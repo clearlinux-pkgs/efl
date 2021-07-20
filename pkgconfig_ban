@@ -7,3 +7,6 @@ vconf
 scim
 libtbm
 libdri2
+iconv
+libavif
+rlottie

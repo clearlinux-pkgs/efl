@@ -6,3 +6,8 @@ gstreamer-dev
 gst-plugins-base-dev
 SDL-dev
 SDL2-dev
+libXtst-dev
+libXScrnSaver-dev
+libXcursor-dev
+buildreq-gnome
+giflib-dev
