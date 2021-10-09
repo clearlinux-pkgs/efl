@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.25.1
-Release  : 16
+Release  : 17
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.25.1.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.25.1.tar.xz
 Summary  : zlib compression library
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : Apache-2.0 BSD-2-Clause FTL GPL-2.0 LGPL-2.1 MIT Zlib
 Requires: efl-bin = %{version}-%{release}
 Requires: efl-data = %{version}-%{release}
+Requires: efl-filemap = %{version}-%{release}
 Requires: efl-lib = %{version}-%{release}
 Requires: efl-license = %{version}-%{release}
 Requires: efl-locales = %{version}-%{release}
@@ -72,6 +73,7 @@ Group: Binaries
 Requires: efl-data = %{version}-%{release}
 Requires: efl-license = %{version}-%{release}
 Requires: efl-services = %{version}-%{release}
+Requires: efl-filemap = %{version}-%{release}
 
 %description bin
 bin components for the efl package.
@@ -98,11 +100,20 @@ Requires: efl = %{version}-%{release}
 dev components for the efl package.
 
 
+%package filemap
+Summary: filemap components for the efl package.
+Group: Default
+
+%description filemap
+filemap components for the efl package.
+
+
 %package lib
 Summary: lib components for the efl package.
 Group: Libraries
 Requires: efl-data = %{version}-%{release}
 Requires: efl-license = %{version}-%{release}
+Requires: efl-filemap = %{version}-%{release}
 
 %description lib
 lib components for the efl package.
@@ -145,15 +156,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626800729
+export SOURCE_DATE_EPOCH=1633743148
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=4 -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=4 -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=4 -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=4 -fno-semantic-interposition -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwl=true \
 -Dopengl=full \
 -Dembedded-lz4=false \
@@ -163,7 +174,7 @@ CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --
 -Dglib=true \
 -Dg-mainloop=true  builddir
 ninja -v -C builddir
-CFLAGS="$CFLAGS -m64 -march=haswell" CXXFLAGS="$CXXFLAGS -m64 -march=haswell " LDFLAGS="$LDFLAGS -m64 -march=haswell" meson --libdir=lib64/haswell --prefix=/usr --buildtype=plain -Dwl=true \
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwl=true \
 -Dopengl=full \
 -Dembedded-lz4=false \
 -Dnative-arch-optimization=false \
@@ -186,7 +197,8 @@ cp %{_builddir}/efl-1.25.1/licenses/COPYING.SMALL %{buildroot}/usr/share/package
 cp %{_builddir}/efl-1.25.1/src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/070d60bcc974c1527f5c4bc7688b0866c957202c
 cp %{_builddir}/efl-1.25.1/src/static_libs/libunibreak/LICENCE %{buildroot}/usr/share/package-licenses/efl/33189a010ed0fd8d694e3337af3d1ecf5f04c427
 cp %{_builddir}/efl-1.25.1/src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/01e23675a9596a3a4571d3ed84d102fb6cb68181
-DESTDIR=%{buildroot} ninja -C builddiravx2 install
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang efl
 ## install_append content
@@ -301,161 +313,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/evas/utils/evas_image_loader.xcf.gz
 /usr/lib64/evas/utils/evas_image_loader.xls
 /usr/lib64/evas/utils/evas_image_loader.xlsx
-/usr/lib64/haswell/cmake/Ecore/EcoreConfig.cmake
-/usr/lib64/haswell/cmake/Ecore/EcoreConfigVersion.cmake
-/usr/lib64/haswell/cmake/EcoreCxx/EcoreCxxConfig.cmake
-/usr/lib64/haswell/cmake/EcoreCxx/EcoreCxxConfigVersion.cmake
-/usr/lib64/haswell/cmake/Edje/EdjeConfig.cmake
-/usr/lib64/haswell/cmake/Edje/EdjeConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eet/EetConfig.cmake
-/usr/lib64/haswell/cmake/Eet/EetConfigVersion.cmake
-/usr/lib64/haswell/cmake/EetCxx/EetCxxConfig.cmake
-/usr/lib64/haswell/cmake/EetCxx/EetCxxConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eeze/EezeConfig.cmake
-/usr/lib64/haswell/cmake/Eeze/EezeConfigVersion.cmake
-/usr/lib64/haswell/cmake/Efl/EflConfig.cmake
-/usr/lib64/haswell/cmake/Efl/EflConfigVersion.cmake
-/usr/lib64/haswell/cmake/Efreet/EfreetConfig.cmake
-/usr/lib64/haswell/cmake/Efreet/EfreetConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eina/EinaConfig.cmake
-/usr/lib64/haswell/cmake/Eina/EinaConfigVersion.cmake
-/usr/lib64/haswell/cmake/EinaCxx/EinaCxxConfig.cmake
-/usr/lib64/haswell/cmake/EinaCxx/EinaCxxConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eio/EioConfig.cmake
-/usr/lib64/haswell/cmake/Eio/EioConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eldbus/EldbusConfig.cmake
-/usr/lib64/haswell/cmake/Eldbus/EldbusConfigVersion.cmake
-/usr/lib64/haswell/cmake/Elementary/ElementaryConfig.cmake
-/usr/lib64/haswell/cmake/Elementary/ElementaryConfigVersion.cmake
-/usr/lib64/haswell/cmake/Elua/EluaConfig.cmake
-/usr/lib64/haswell/cmake/Elua/EluaConfigVersion.cmake
-/usr/lib64/haswell/cmake/Emile/EmileConfig.cmake
-/usr/lib64/haswell/cmake/Emile/EmileConfigVersion.cmake
-/usr/lib64/haswell/cmake/Emotion/EmotionConfig.cmake
-/usr/lib64/haswell/cmake/Emotion/EmotionConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eo/EoConfig.cmake
-/usr/lib64/haswell/cmake/Eo/EoConfigVersion.cmake
-/usr/lib64/haswell/cmake/EoCxx/EoCxxConfig.cmake
-/usr/lib64/haswell/cmake/EoCxx/EoCxxConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eolian/EolianConfig.cmake
-/usr/lib64/haswell/cmake/Eolian/EolianConfigVersion.cmake
-/usr/lib64/haswell/cmake/Eolian/EolianHelper.cmake
-/usr/lib64/haswell/cmake/EolianCxx/EolianCxxConfig.cmake
-/usr/lib64/haswell/cmake/EolianCxx/EolianCxxConfigVersion.cmake
-/usr/lib64/haswell/cmake/Ethumb/EthumbConfig.cmake
-/usr/lib64/haswell/cmake/Ethumb/EthumbConfigVersion.cmake
-/usr/lib64/haswell/cmake/EthumbClient/EthumbClientConfig.cmake
-/usr/lib64/haswell/cmake/EthumbClient/EthumbClientConfigVersion.cmake
-/usr/lib64/haswell/cmake/Evas/EvasConfig.cmake
-/usr/lib64/haswell/cmake/Evas/EvasConfigVersion.cmake
-/usr/lib64/haswell/cmake/EvasCxx/EvasCxxConfig.cmake
-/usr/lib64/haswell/cmake/EvasCxx/EvasCxxConfigVersion.cmake
-/usr/lib64/haswell/ecore_con/utils/v-1.25/efl_net_proxy_helper
-/usr/lib64/haswell/edje/utils/v-1.25/epp
-/usr/lib64/haswell/efreet/v-1.25/efreet_desktop_cache_create
-/usr/lib64/haswell/efreet/v-1.25/efreet_icon_cache_create
-/usr/lib64/haswell/efreet/v-1.25/efreet_mime_cache_create
-/usr/lib64/haswell/ethumb_client/utils/v-1.25/ethumbd_slave
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.doc
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.docx
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.libreoffice
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.odp
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.ods
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.odt
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.ppt
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.pptx
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.rtf
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.xls
-/usr/lib64/haswell/evas/utils/evas_generic_pdf_loader.xlsx
-/usr/lib64/haswell/evas/utils/evas_image_loader.264
-/usr/lib64/haswell/evas/utils/evas_image_loader.3g2
-/usr/lib64/haswell/evas/utils/evas_image_loader.3gp
-/usr/lib64/haswell/evas/utils/evas_image_loader.3gp2
-/usr/lib64/haswell/evas/utils/evas_image_loader.3gpp
-/usr/lib64/haswell/evas/utils/evas_image_loader.3gpp2
-/usr/lib64/haswell/evas/utils/evas_image_loader.3p2
-/usr/lib64/haswell/evas/utils/evas_image_loader.arw
-/usr/lib64/haswell/evas/utils/evas_image_loader.asf
-/usr/lib64/haswell/evas/utils/evas_image_loader.avi
-/usr/lib64/haswell/evas/utils/evas_image_loader.bdm
-/usr/lib64/haswell/evas/utils/evas_image_loader.bdmv
-/usr/lib64/haswell/evas/utils/evas_image_loader.clpi
-/usr/lib64/haswell/evas/utils/evas_image_loader.cpi
-/usr/lib64/haswell/evas/utils/evas_image_loader.cr2
-/usr/lib64/haswell/evas/utils/evas_image_loader.crw
-/usr/lib64/haswell/evas/utils/evas_image_loader.dcr
-/usr/lib64/haswell/evas/utils/evas_image_loader.dng
-/usr/lib64/haswell/evas/utils/evas_image_loader.doc
-/usr/lib64/haswell/evas/utils/evas_image_loader.docx
-/usr/lib64/haswell/evas/utils/evas_image_loader.dv
-/usr/lib64/haswell/evas/utils/evas_image_loader.erf
-/usr/lib64/haswell/evas/utils/evas_image_loader.fla
-/usr/lib64/haswell/evas/utils/evas_image_loader.flv
-/usr/lib64/haswell/evas/utils/evas_image_loader.gst
-/usr/lib64/haswell/evas/utils/evas_image_loader.k25
-/usr/lib64/haswell/evas/utils/evas_image_loader.kdc
-/usr/lib64/haswell/evas/utils/evas_image_loader.m1v
-/usr/lib64/haswell/evas/utils/evas_image_loader.m2t
-/usr/lib64/haswell/evas/utils/evas_image_loader.m2v
-/usr/lib64/haswell/evas/utils/evas_image_loader.m4v
-/usr/lib64/haswell/evas/utils/evas_image_loader.mkv
-/usr/lib64/haswell/evas/utils/evas_image_loader.mov
-/usr/lib64/haswell/evas/utils/evas_image_loader.mp2
-/usr/lib64/haswell/evas/utils/evas_image_loader.mp2ts
-/usr/lib64/haswell/evas/utils/evas_image_loader.mp4
-/usr/lib64/haswell/evas/utils/evas_image_loader.mpe
-/usr/lib64/haswell/evas/utils/evas_image_loader.mpeg
-/usr/lib64/haswell/evas/utils/evas_image_loader.mpg
-/usr/lib64/haswell/evas/utils/evas_image_loader.mpl
-/usr/lib64/haswell/evas/utils/evas_image_loader.mpls
-/usr/lib64/haswell/evas/utils/evas_image_loader.mrw
-/usr/lib64/haswell/evas/utils/evas_image_loader.mts
-/usr/lib64/haswell/evas/utils/evas_image_loader.mxf
-/usr/lib64/haswell/evas/utils/evas_image_loader.nef
-/usr/lib64/haswell/evas/utils/evas_image_loader.nrf
-/usr/lib64/haswell/evas/utils/evas_image_loader.nrw
-/usr/lib64/haswell/evas/utils/evas_image_loader.nut
-/usr/lib64/haswell/evas/utils/evas_image_loader.nuv
-/usr/lib64/haswell/evas/utils/evas_image_loader.odp
-/usr/lib64/haswell/evas/utils/evas_image_loader.ods
-/usr/lib64/haswell/evas/utils/evas_image_loader.odt
-/usr/lib64/haswell/evas/utils/evas_image_loader.ogg
-/usr/lib64/haswell/evas/utils/evas_image_loader.ogm
-/usr/lib64/haswell/evas/utils/evas_image_loader.ogv
-/usr/lib64/haswell/evas/utils/evas_image_loader.orf
-/usr/lib64/haswell/evas/utils/evas_image_loader.pdf
-/usr/lib64/haswell/evas/utils/evas_image_loader.pef
-/usr/lib64/haswell/evas/utils/evas_image_loader.ppt
-/usr/lib64/haswell/evas/utils/evas_image_loader.pptx
-/usr/lib64/haswell/evas/utils/evas_image_loader.ps
-/usr/lib64/haswell/evas/utils/evas_image_loader.qt
-/usr/lib64/haswell/evas/utils/evas_image_loader.raf
-/usr/lib64/haswell/evas/utils/evas_image_loader.raw
-/usr/lib64/haswell/evas/utils/evas_image_loader.rm
-/usr/lib64/haswell/evas/utils/evas_image_loader.rmj
-/usr/lib64/haswell/evas/utils/evas_image_loader.rmm
-/usr/lib64/haswell/evas/utils/evas_image_loader.rms
-/usr/lib64/haswell/evas/utils/evas_image_loader.rmvb
-/usr/lib64/haswell/evas/utils/evas_image_loader.rmx
-/usr/lib64/haswell/evas/utils/evas_image_loader.rsvg
-/usr/lib64/haswell/evas/utils/evas_image_loader.rtf
-/usr/lib64/haswell/evas/utils/evas_image_loader.rv
-/usr/lib64/haswell/evas/utils/evas_image_loader.rw2
-/usr/lib64/haswell/evas/utils/evas_image_loader.sr2
-/usr/lib64/haswell/evas/utils/evas_image_loader.srf
-/usr/lib64/haswell/evas/utils/evas_image_loader.svg
-/usr/lib64/haswell/evas/utils/evas_image_loader.svg.gz
-/usr/lib64/haswell/evas/utils/evas_image_loader.svgz
-/usr/lib64/haswell/evas/utils/evas_image_loader.swf
-/usr/lib64/haswell/evas/utils/evas_image_loader.ts
-/usr/lib64/haswell/evas/utils/evas_image_loader.weba
-/usr/lib64/haswell/evas/utils/evas_image_loader.webm
-/usr/lib64/haswell/evas/utils/evas_image_loader.wmv
-/usr/lib64/haswell/evas/utils/evas_image_loader.x3f
-/usr/lib64/haswell/evas/utils/evas_image_loader.xcf
-/usr/lib64/haswell/evas/utils/evas_image_loader.xcf.gz
-/usr/lib64/haswell/evas/utils/evas_image_loader.xls
-/usr/lib64/haswell/evas/utils/evas_image_loader.xlsx
 
 %files bin
 %defattr(-,root,root,-)
@@ -507,6 +364,7 @@ chmod -R -s %{buildroot}/
 /usr/bin/exactness_play
 /usr/bin/exactness_record
 /usr/bin/vieet
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -3518,78 +3376,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/cmake/Evas/EvasConfigVersion.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfig.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfigVersion.cmake
-/usr/lib64/haswell/libecore.so
-/usr/lib64/haswell/libecore_audio.so
-/usr/lib64/haswell/libecore_con.so
-/usr/lib64/haswell/libecore_evas.so
-/usr/lib64/haswell/libecore_input_evas.so
-/usr/lib64/haswell/libecore_wl2.so
-/usr/lib64/haswell/libecore_x.so
-/usr/lib64/haswell/libector.so
-/usr/lib64/haswell/libedje.so
-/usr/lib64/haswell/libeet.so
-/usr/lib64/haswell/libefl.so
-/usr/lib64/haswell/libefl_canvas_wl.so
-/usr/lib64/haswell/libefreet.so
-/usr/lib64/haswell/libeina.so
-/usr/lib64/haswell/libeio.so
-/usr/lib64/haswell/libelementary.so
-/usr/lib64/haswell/libembryo.so
-/usr/lib64/haswell/libemile.so
-/usr/lib64/haswell/libemotion.so
-/usr/lib64/haswell/libeo.so
-/usr/lib64/haswell/libeo_dbg.so
-/usr/lib64/haswell/libeolian.so
-/usr/lib64/haswell/libethumb.so
-/usr/lib64/haswell/libevas.so
-/usr/lib64/haswell/pkgconfig/ecore-audio.pc
-/usr/lib64/haswell/pkgconfig/ecore-con.pc
-/usr/lib64/haswell/pkgconfig/ecore-cxx.pc
-/usr/lib64/haswell/pkgconfig/ecore-evas.pc
-/usr/lib64/haswell/pkgconfig/ecore-file.pc
-/usr/lib64/haswell/pkgconfig/ecore-imf-evas.pc
-/usr/lib64/haswell/pkgconfig/ecore-imf.pc
-/usr/lib64/haswell/pkgconfig/ecore-input-evas.pc
-/usr/lib64/haswell/pkgconfig/ecore-input.pc
-/usr/lib64/haswell/pkgconfig/ecore-ipc.pc
-/usr/lib64/haswell/pkgconfig/ecore-wl2.pc
-/usr/lib64/haswell/pkgconfig/ecore-x.pc
-/usr/lib64/haswell/pkgconfig/ecore.pc
-/usr/lib64/haswell/pkgconfig/ector.pc
-/usr/lib64/haswell/pkgconfig/edje-cxx.pc
-/usr/lib64/haswell/pkgconfig/edje.pc
-/usr/lib64/haswell/pkgconfig/eet-cxx.pc
-/usr/lib64/haswell/pkgconfig/eet.pc
-/usr/lib64/haswell/pkgconfig/eeze.pc
-/usr/lib64/haswell/pkgconfig/efl-canvas-wl.pc
-/usr/lib64/haswell/pkgconfig/efl-core.pc
-/usr/lib64/haswell/pkgconfig/efl-cxx.pc
-/usr/lib64/haswell/pkgconfig/efl-net.pc
-/usr/lib64/haswell/pkgconfig/efl-ui.pc
-/usr/lib64/haswell/pkgconfig/efl.pc
-/usr/lib64/haswell/pkgconfig/efreet-mime.pc
-/usr/lib64/haswell/pkgconfig/efreet-trash.pc
-/usr/lib64/haswell/pkgconfig/efreet.pc
-/usr/lib64/haswell/pkgconfig/eina-cxx.pc
-/usr/lib64/haswell/pkgconfig/eina.pc
-/usr/lib64/haswell/pkgconfig/eio-cxx.pc
-/usr/lib64/haswell/pkgconfig/eio.pc
-/usr/lib64/haswell/pkgconfig/eldbus-cxx.pc
-/usr/lib64/haswell/pkgconfig/eldbus.pc
-/usr/lib64/haswell/pkgconfig/elementary-cxx.pc
-/usr/lib64/haswell/pkgconfig/elementary.pc
-/usr/lib64/haswell/pkgconfig/embryo.pc
-/usr/lib64/haswell/pkgconfig/emile.pc
-/usr/lib64/haswell/pkgconfig/emotion.pc
-/usr/lib64/haswell/pkgconfig/eo-cxx.pc
-/usr/lib64/haswell/pkgconfig/eo.pc
-/usr/lib64/haswell/pkgconfig/eolian-cxx.pc
-/usr/lib64/haswell/pkgconfig/eolian.pc
-/usr/lib64/haswell/pkgconfig/ethumb-client.pc
-/usr/lib64/haswell/pkgconfig/ethumb.pc
-/usr/lib64/haswell/pkgconfig/ethumb_client.pc
-/usr/lib64/haswell/pkgconfig/evas-cxx.pc
-/usr/lib64/haswell/pkgconfig/evas.pc
 /usr/lib64/libecore.so
 /usr/lib64/libecore_audio.so
 /usr/lib64/libecore_con.so
@@ -3675,6 +3461,10 @@ chmod -R -s %{buildroot}/
 /usr/lib64/pkgconfig/evas-cxx.pc
 /usr/lib64/pkgconfig/evas.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-efl
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/ecore/system/systemd/v-1.25/module.so
@@ -3716,64 +3506,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/evas/modules/image_savers/tgv/v-1.25/module.so
 /usr/lib64/evas/modules/image_savers/tiff/v-1.25/module.so
 /usr/lib64/evas/modules/image_savers/webp/v-1.25/module.so
-/usr/lib64/haswell/ecore_evas/engines/extn/v-1.25/module.so
-/usr/lib64/haswell/ecore_evas/engines/x/v-1.25/module.so
-/usr/lib64/haswell/emotion/modules/gstreamer1/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/engines/buffer/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/engines/gl_generic/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/engines/gl_x11/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/engines/software_x11/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/image_loaders/tiff/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/image_loaders/xpm/v-1.25/module.so
-/usr/lib64/haswell/evas/modules/image_savers/tgv/v-1.25/module.so
-/usr/lib64/haswell/libecore.so.1
-/usr/lib64/haswell/libecore.so.1.25.1
-/usr/lib64/haswell/libecore_audio.so.1
-/usr/lib64/haswell/libecore_audio.so.1.25.1
-/usr/lib64/haswell/libecore_con.so.1
-/usr/lib64/haswell/libecore_con.so.1.25.1
-/usr/lib64/haswell/libecore_evas.so.1
-/usr/lib64/haswell/libecore_evas.so.1.25.1
-/usr/lib64/haswell/libecore_input_evas.so.1
-/usr/lib64/haswell/libecore_input_evas.so.1.25.1
-/usr/lib64/haswell/libecore_wl2.so.1
-/usr/lib64/haswell/libecore_wl2.so.1.25.1
-/usr/lib64/haswell/libecore_x.so.1
-/usr/lib64/haswell/libecore_x.so.1.25.1
-/usr/lib64/haswell/libector.so.1
-/usr/lib64/haswell/libector.so.1.25.1
-/usr/lib64/haswell/libedje.so.1
-/usr/lib64/haswell/libedje.so.1.25.1
-/usr/lib64/haswell/libeet.so.1
-/usr/lib64/haswell/libeet.so.1.25.1
-/usr/lib64/haswell/libefl.so.1
-/usr/lib64/haswell/libefl.so.1.25.1
-/usr/lib64/haswell/libefl_canvas_wl.so.1
-/usr/lib64/haswell/libefl_canvas_wl.so.1.25.1
-/usr/lib64/haswell/libefreet.so.1
-/usr/lib64/haswell/libefreet.so.1.25.1
-/usr/lib64/haswell/libeina.so.1
-/usr/lib64/haswell/libeina.so.1.25.1
-/usr/lib64/haswell/libeio.so.1
-/usr/lib64/haswell/libeio.so.1.25.1
-/usr/lib64/haswell/libelementary.so.1
-/usr/lib64/haswell/libelementary.so.1.25.1
-/usr/lib64/haswell/libembryo.so.1
-/usr/lib64/haswell/libembryo.so.1.25.1
-/usr/lib64/haswell/libemile.so.1
-/usr/lib64/haswell/libemile.so.1.25.1
-/usr/lib64/haswell/libemotion.so.1
-/usr/lib64/haswell/libemotion.so.1.25.1
-/usr/lib64/haswell/libeo.so.1
-/usr/lib64/haswell/libeo.so.1.25.1
-/usr/lib64/haswell/libeo_dbg.so.1
-/usr/lib64/haswell/libeo_dbg.so.1.25.1
-/usr/lib64/haswell/libeolian.so.1
-/usr/lib64/haswell/libeolian.so.1.25.1
-/usr/lib64/haswell/libethumb.so.1
-/usr/lib64/haswell/libethumb.so.1.25.1
-/usr/lib64/haswell/libevas.so.1
-/usr/lib64/haswell/libevas.so.1.25.1
 /usr/lib64/libecore.so.1
 /usr/lib64/libecore.so.1.25.1
 /usr/lib64/libecore_audio.so.1
@@ -3846,6 +3578,7 @@ chmod -R -s %{buildroot}/
 /usr/lib64/libexactness_play.so.1.25.1
 /usr/lib64/libexactness_record.so.1
 /usr/lib64/libexactness_record.so.1.25.1
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
