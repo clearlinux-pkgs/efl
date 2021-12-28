@@ -11,3 +11,4 @@ libXScrnSaver-dev
 libXcursor-dev
 buildreq-gnome
 giflib-dev
+libavif-dev

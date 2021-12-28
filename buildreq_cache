@@ -1,5 +1,4 @@
-1.25.1
-dbus-dev
+1.26.0
 doxygen
 gnutls-dev
 ibus-dev
@@ -8,11 +7,10 @@ libsndfile-dev
 libwebp-dev
 openssl-dev
 pkgconfig(check)
-pkgconfig(dbus-1)
 pkgconfig(gnutls)
 pkgconfig(ibus-1.0)
-pkgconfig(iconv)
-pkgconfig(libavif)
+pkgconfig(libheif)
+pkgconfig(libinput)
 pkgconfig(liblz4)
 pkgconfig(libopenjp2)
 pkgconfig(libpulse)
@@ -20,14 +18,10 @@ pkgconfig(libraw)
 pkgconfig(librsvg-2.0)
 pkgconfig(libspectre)
 pkgconfig(libtiff-4)
-pkgconfig(libudev)
 pkgconfig(libunwind-generic)
 pkgconfig(libwebp)
 pkgconfig(luajit)
 pkgconfig(openssl)
 pkgconfig(poppler-cpp)
-pkgconfig(rlottie)
 pkgconfig(sndfile)
-pkgconfig(valgrind)
 pkgconfig(wayland-protocols)
-valgrind
