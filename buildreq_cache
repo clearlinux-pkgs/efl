@@ -1,4 +1,4 @@
-1.26.0
+1.26.1
 doxygen
 gnutls-dev
 ibus-dev
@@ -9,7 +9,6 @@ openssl-dev
 pkgconfig(check)
 pkgconfig(gnutls)
 pkgconfig(ibus-1.0)
-pkgconfig(libheif)
 pkgconfig(libinput)
 pkgconfig(liblz4)
 pkgconfig(libopenjp2)
