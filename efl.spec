@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.26.1
-Release  : 22
+Release  : 23
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.1.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.1.tar.xz
 Summary  : zlib compression library
