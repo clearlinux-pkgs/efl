@@ -4,7 +4,7 @@
 #
 Name     : efl
 Version  : 1.26.2
-Release  : 25
+Release  : 26
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.2.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.2.tar.xz
 Summary  : zlib compression library
@@ -153,7 +153,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656021730
+export SOURCE_DATE_EPOCH=1656103974
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -310,101 +310,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/evas/utils/evas_image_loader.xcf.gz
 /usr/lib64/evas/utils/evas_image_loader.xls
 /usr/lib64/evas/utils/evas_image_loader.xlsx
-/usr/lib64/glibc-hwcaps/x86-64-v3/efl_net_proxy_helper
-/usr/lib64/glibc-hwcaps/x86-64-v3/efreet_desktop_cache_create
-/usr/lib64/glibc-hwcaps/x86-64-v3/efreet_icon_cache_create
-/usr/lib64/glibc-hwcaps/x86-64-v3/efreet_mime_cache_create
-/usr/lib64/glibc-hwcaps/x86-64-v3/epp
-/usr/lib64/glibc-hwcaps/x86-64-v3/ethumbd_slave
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.264
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3g2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3gp
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3gp2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3gpp
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3gpp2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.3p2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.arw
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.asf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.avi
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.bdm
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.bdmv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.clpi
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.cpi
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.cr2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.crw
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.dcr
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.dng
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.doc
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.docx
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.dv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.erf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.fla
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.flv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.gst
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.k25
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.kdc
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.m1v
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.m2t
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.m2v
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.m4v
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mkv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mov
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mp2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mp2ts
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mp4
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mpe
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mpeg
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mpg
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mpl
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mpls
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mrw
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mts
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.mxf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.nef
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.nrf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.nrw
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.nut
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.nuv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.odp
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ods
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.odt
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ogg
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ogm
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ogv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.orf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.pdf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.pef
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ppt
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.pptx
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ps
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.qt
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.raf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.raw
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rm
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rmj
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rmm
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rms
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rmvb
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rmx
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rsvg
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rtf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.rw2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.sr2
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.srf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.svg
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.svg.gz
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.svgz
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.swf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.ts
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.weba
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.webm
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.wmv
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.x3f
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.xcf
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.xcf.gz
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.xls
-/usr/lib64/glibc-hwcaps/x86-64-v3/evas_image_loader.xlsx
 
 %files bin
 %defattr(-,root,root,-)
@@ -3725,7 +3630,6 @@ chmod -R -s %{buildroot}/
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/module.so
 /usr/lib64/libecore.so.1
 /usr/lib64/libecore.so.1.26.2
 /usr/lib64/libecore_audio.so.1
