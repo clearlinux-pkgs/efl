@@ -4,12 +4,12 @@
 #
 Name     : efl
 Version  : 1.26.2
-Release  : 26
+Release  : 27
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.2.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.2.tar.xz
 Summary  : zlib compression library
 Group    : Development/Tools
-License  : Apache-2.0 BSD-2-Clause FTL GPL-2.0 LGPL-2.1 MIT
+License  : Apache-2.0 BSD-2-Clause FTL GPL-2.0 LGPL-2.1 MIT Zlib
 Requires: efl-bin = %{version}-%{release}
 Requires: efl-data = %{version}-%{release}
 Requires: efl-filemap = %{version}-%{release}
@@ -153,7 +153,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656103974
+export SOURCE_DATE_EPOCH=1656713356
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -193,6 +193,7 @@ cp %{_builddir}/efl-1.26.2/licenses/COPYING.NGINX-MIT %{buildroot}/usr/share/pac
 cp %{_builddir}/efl-1.26.2/licenses/COPYING.SMALL %{buildroot}/usr/share/package-licenses/efl/49d7220235cd5c5d99df26599117b80fb2930593
 cp %{_builddir}/efl-1.26.2/src/static_libs/fnmatch/COPYRIGHT %{buildroot}/usr/share/package-licenses/efl/4808116261778b2137bb955568032cd684fb199b
 cp %{_builddir}/efl-1.26.2/src/static_libs/libdrm/LICENSE %{buildroot}/usr/share/package-licenses/efl/070d60bcc974c1527f5c4bc7688b0866c957202c
+cp %{_builddir}/efl-1.26.2/src/static_libs/libunibreak/LICENCE %{buildroot}/usr/share/package-licenses/efl/b732f65dd876b409a3078bcfa24998526322bb63
 cp %{_builddir}/efl-1.26.2/src/static_libs/lz4/LICENSE %{buildroot}/usr/share/package-licenses/efl/01e23675a9596a3a4571d3ed84d102fb6cb68181
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
@@ -3384,6 +3385,43 @@ chmod -R -s %{buildroot}/
 /usr/lib64/cmake/Evas/EvasConfigVersion.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfig.cmake
 /usr/lib64/cmake/EvasCxx/EvasCxxConfigVersion.cmake
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_audio.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_con.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_evas.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_file.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf_evas.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input_evas.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_ipc.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_wl2.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_x.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libector.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libedje.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeet.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeeze.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libefl.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libefl_canvas_wl.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_mime.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_trash.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeina.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeio.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeldbus.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libelementary.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libelput.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libembryo.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libemile.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libemotion.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeo.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeo_dbg.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeolian.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libethumb.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libethumb_client.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libevas.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_play.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so
 /usr/lib64/libecore.so
 /usr/lib64/libecore_audio.so
 /usr/lib64/libecore_con.so
@@ -3519,115 +3557,78 @@ chmod -R -s %{buildroot}/
 /usr/lib64/evas/modules/image_savers/tgv/v-1.26/module.so
 /usr/lib64/evas/modules/image_savers/tiff/v-1.26/module.so
 /usr/lib64/evas/modules/image_savers/webp/v-1.26/module.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_audio.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_audio.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_audio.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_con.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_con.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_con.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_evas.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_evas.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_evas.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_file.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_file.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_file.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf_evas.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf_evas.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_imf_evas.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input_evas.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input_evas.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_input_evas.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_ipc.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_ipc.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_ipc.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_wl2.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_wl2.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_wl2.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libecore_x.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_x.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libecore_x.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libector.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libector.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libector.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libedje.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libedje.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libedje.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeet.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeet.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeet.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeeze.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeeze.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeeze.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libefl.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefl.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefl.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libefl_canvas_wl.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefl_canvas_wl.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefl_canvas_wl.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_mime.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_mime.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_mime.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_trash.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_trash.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libefreet_trash.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeina.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeina.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeina.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeio.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeio.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeio.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeldbus.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeldbus.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeldbus.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libelementary.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libelementary.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libelementary.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libelput.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libelput.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libelput.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libembryo.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libembryo.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libembryo.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libemile.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libemile.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libemile.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libemotion.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libemotion.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libemotion.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeo.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeo.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeo.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeo_dbg.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeo_dbg.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeo_dbg.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeolian.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeolian.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libeolian.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libethumb.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libethumb.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libethumb.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libethumb_client.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libethumb_client.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libethumb_client.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libevas.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libevas.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libevas.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_play.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_play.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_play.so.1.26.2
-/usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libexactness_record.so.1.26.2
 /usr/lib64/libecore.so.1
@@ -3704,6 +3705,7 @@ chmod -R -s %{buildroot}/
 /usr/lib64/libexactness_play.so.1.26.2
 /usr/lib64/libexactness_record.so.1
 /usr/lib64/libexactness_record.so.1.26.2
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
@@ -3717,6 +3719,7 @@ chmod -R -s %{buildroot}/
 /usr/share/package-licenses/efl/5d1a0e378eba39192d02bc872f727c2ee8a2f0b7
 /usr/share/package-licenses/efl/8183e75e4fcf4799d0e4fa51b74855edc5eb8b87
 /usr/share/package-licenses/efl/a8f3e29d5eab4420318de979754f5637d4bf2c3f
+/usr/share/package-licenses/efl/b732f65dd876b409a3078bcfa24998526322bb63
 /usr/share/package-licenses/efl/e675839915861b98343bb1733e77f64fd8d9e319
 
 %files services
