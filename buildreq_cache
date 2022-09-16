@@ -1,4 +1,4 @@
-1.26.2
+1.26.3
 doxygen
 gnutls-dev
 ibus-dev
@@ -20,7 +20,6 @@ pkgconfig(libtiff-4)
 pkgconfig(libunwind-generic)
 pkgconfig(libwebp)
 pkgconfig(luajit)
-pkgconfig(openssl)
 pkgconfig(poppler-cpp)
 pkgconfig(sndfile)
 pkgconfig(wayland-protocols)
