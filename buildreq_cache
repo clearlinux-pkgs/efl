@@ -22,4 +22,6 @@ pkgconfig(libwebp)
 pkgconfig(luajit)
 pkgconfig(poppler-cpp)
 pkgconfig(sndfile)
+pkgconfig(valgrind)
 pkgconfig(wayland-protocols)
+valgrind
