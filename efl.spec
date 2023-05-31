@@ -5,7 +5,7 @@
 #
 Name     : efl
 Version  : 1.26.3
-Release  : 38
+Release  : 39
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Summary  : zlib compression library
@@ -148,15 +148,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682958458
+export SOURCE_DATE_EPOCH=1685499057
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwl=true \
 -Dopengl=full \
 -Dembedded-lz4=false \
@@ -206,95 +206,12 @@ chmod -R -s %{buildroot}/
 /V3/usr/lib64/efreet/v-1.26/efreet_icon_cache_create
 /V3/usr/lib64/efreet/v-1.26/efreet_mime_cache_create
 /V3/usr/lib64/ethumb_client/utils/v-1.26/ethumbd_slave
-/V3/usr/lib64/evas/utils/evas_image_loader.264
-/V3/usr/lib64/evas/utils/evas_image_loader.3g2
-/V3/usr/lib64/evas/utils/evas_image_loader.3gp
-/V3/usr/lib64/evas/utils/evas_image_loader.3gp2
-/V3/usr/lib64/evas/utils/evas_image_loader.3gpp
-/V3/usr/lib64/evas/utils/evas_image_loader.3gpp2
-/V3/usr/lib64/evas/utils/evas_image_loader.3p2
-/V3/usr/lib64/evas/utils/evas_image_loader.arw
-/V3/usr/lib64/evas/utils/evas_image_loader.asf
-/V3/usr/lib64/evas/utils/evas_image_loader.avi
-/V3/usr/lib64/evas/utils/evas_image_loader.bdm
-/V3/usr/lib64/evas/utils/evas_image_loader.bdmv
-/V3/usr/lib64/evas/utils/evas_image_loader.clpi
-/V3/usr/lib64/evas/utils/evas_image_loader.cpi
-/V3/usr/lib64/evas/utils/evas_image_loader.cr2
-/V3/usr/lib64/evas/utils/evas_image_loader.crw
-/V3/usr/lib64/evas/utils/evas_image_loader.dcr
-/V3/usr/lib64/evas/utils/evas_image_loader.dng
-/V3/usr/lib64/evas/utils/evas_image_loader.doc
-/V3/usr/lib64/evas/utils/evas_image_loader.docx
-/V3/usr/lib64/evas/utils/evas_image_loader.dv
-/V3/usr/lib64/evas/utils/evas_image_loader.erf
-/V3/usr/lib64/evas/utils/evas_image_loader.fla
-/V3/usr/lib64/evas/utils/evas_image_loader.flv
 /V3/usr/lib64/evas/utils/evas_image_loader.gst
-/V3/usr/lib64/evas/utils/evas_image_loader.k25
-/V3/usr/lib64/evas/utils/evas_image_loader.kdc
-/V3/usr/lib64/evas/utils/evas_image_loader.m1v
-/V3/usr/lib64/evas/utils/evas_image_loader.m2t
-/V3/usr/lib64/evas/utils/evas_image_loader.m2v
-/V3/usr/lib64/evas/utils/evas_image_loader.m4v
-/V3/usr/lib64/evas/utils/evas_image_loader.mkv
-/V3/usr/lib64/evas/utils/evas_image_loader.mov
-/V3/usr/lib64/evas/utils/evas_image_loader.mp2
-/V3/usr/lib64/evas/utils/evas_image_loader.mp2ts
-/V3/usr/lib64/evas/utils/evas_image_loader.mp4
-/V3/usr/lib64/evas/utils/evas_image_loader.mpe
-/V3/usr/lib64/evas/utils/evas_image_loader.mpeg
-/V3/usr/lib64/evas/utils/evas_image_loader.mpg
-/V3/usr/lib64/evas/utils/evas_image_loader.mpl
-/V3/usr/lib64/evas/utils/evas_image_loader.mpls
-/V3/usr/lib64/evas/utils/evas_image_loader.mrw
-/V3/usr/lib64/evas/utils/evas_image_loader.mts
-/V3/usr/lib64/evas/utils/evas_image_loader.mxf
-/V3/usr/lib64/evas/utils/evas_image_loader.nef
-/V3/usr/lib64/evas/utils/evas_image_loader.nrf
-/V3/usr/lib64/evas/utils/evas_image_loader.nrw
-/V3/usr/lib64/evas/utils/evas_image_loader.nut
-/V3/usr/lib64/evas/utils/evas_image_loader.nuv
-/V3/usr/lib64/evas/utils/evas_image_loader.odp
-/V3/usr/lib64/evas/utils/evas_image_loader.ods
-/V3/usr/lib64/evas/utils/evas_image_loader.odt
-/V3/usr/lib64/evas/utils/evas_image_loader.ogg
-/V3/usr/lib64/evas/utils/evas_image_loader.ogm
-/V3/usr/lib64/evas/utils/evas_image_loader.ogv
-/V3/usr/lib64/evas/utils/evas_image_loader.orf
 /V3/usr/lib64/evas/utils/evas_image_loader.pdf
-/V3/usr/lib64/evas/utils/evas_image_loader.pef
-/V3/usr/lib64/evas/utils/evas_image_loader.ppt
-/V3/usr/lib64/evas/utils/evas_image_loader.pptx
 /V3/usr/lib64/evas/utils/evas_image_loader.ps
-/V3/usr/lib64/evas/utils/evas_image_loader.qt
-/V3/usr/lib64/evas/utils/evas_image_loader.raf
 /V3/usr/lib64/evas/utils/evas_image_loader.raw
-/V3/usr/lib64/evas/utils/evas_image_loader.rm
-/V3/usr/lib64/evas/utils/evas_image_loader.rmj
-/V3/usr/lib64/evas/utils/evas_image_loader.rmm
-/V3/usr/lib64/evas/utils/evas_image_loader.rms
-/V3/usr/lib64/evas/utils/evas_image_loader.rmvb
-/V3/usr/lib64/evas/utils/evas_image_loader.rmx
 /V3/usr/lib64/evas/utils/evas_image_loader.rsvg
-/V3/usr/lib64/evas/utils/evas_image_loader.rtf
-/V3/usr/lib64/evas/utils/evas_image_loader.rv
-/V3/usr/lib64/evas/utils/evas_image_loader.rw2
-/V3/usr/lib64/evas/utils/evas_image_loader.sr2
-/V3/usr/lib64/evas/utils/evas_image_loader.srf
-/V3/usr/lib64/evas/utils/evas_image_loader.svg
-/V3/usr/lib64/evas/utils/evas_image_loader.svg.gz
-/V3/usr/lib64/evas/utils/evas_image_loader.svgz
-/V3/usr/lib64/evas/utils/evas_image_loader.swf
-/V3/usr/lib64/evas/utils/evas_image_loader.ts
-/V3/usr/lib64/evas/utils/evas_image_loader.weba
-/V3/usr/lib64/evas/utils/evas_image_loader.webm
-/V3/usr/lib64/evas/utils/evas_image_loader.wmv
-/V3/usr/lib64/evas/utils/evas_image_loader.x3f
 /V3/usr/lib64/evas/utils/evas_image_loader.xcf
-/V3/usr/lib64/evas/utils/evas_image_loader.xcf.gz
-/V3/usr/lib64/evas/utils/evas_image_loader.xls
-/V3/usr/lib64/evas/utils/evas_image_loader.xlsx
 /usr/lib64/ecore_con/utils/v-1.26/efl_net_proxy_helper
 /usr/lib64/edje/utils/v-1.26/epp
 /usr/lib64/efreet/v-1.26/efreet_desktop_cache_create
@@ -1492,43 +1409,6 @@ chmod -R -s %{buildroot}/
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libecore.so
-/V3/usr/lib64/libecore_audio.so
-/V3/usr/lib64/libecore_con.so
-/V3/usr/lib64/libecore_evas.so
-/V3/usr/lib64/libecore_file.so
-/V3/usr/lib64/libecore_imf.so
-/V3/usr/lib64/libecore_imf_evas.so
-/V3/usr/lib64/libecore_input.so
-/V3/usr/lib64/libecore_input_evas.so
-/V3/usr/lib64/libecore_ipc.so
-/V3/usr/lib64/libecore_wl2.so
-/V3/usr/lib64/libecore_x.so
-/V3/usr/lib64/libector.so
-/V3/usr/lib64/libedje.so
-/V3/usr/lib64/libeet.so
-/V3/usr/lib64/libeeze.so
-/V3/usr/lib64/libefl.so
-/V3/usr/lib64/libefl_canvas_wl.so
-/V3/usr/lib64/libefreet.so
-/V3/usr/lib64/libefreet_mime.so
-/V3/usr/lib64/libefreet_trash.so
-/V3/usr/lib64/libeina.so
-/V3/usr/lib64/libeio.so
-/V3/usr/lib64/libeldbus.so
-/V3/usr/lib64/libelementary.so
-/V3/usr/lib64/libelput.so
-/V3/usr/lib64/libembryo.so
-/V3/usr/lib64/libemile.so
-/V3/usr/lib64/libemotion.so
-/V3/usr/lib64/libeo.so
-/V3/usr/lib64/libeo_dbg.so
-/V3/usr/lib64/libeolian.so
-/V3/usr/lib64/libethumb.so
-/V3/usr/lib64/libethumb_client.so
-/V3/usr/lib64/libevas.so
-/V3/usr/lib64/libexactness_play.so
-/V3/usr/lib64/libexactness_record.so
 /usr/include/ecore-1/Ecore.h
 /usr/include/ecore-1/Ecore_Common.h
 /usr/include/ecore-1/Ecore_Eo.h
@@ -3685,79 +3565,42 @@ chmod -R -s %{buildroot}/
 /V3/usr/lib64/evas/modules/image_savers/tgv/v-1.26/module.so
 /V3/usr/lib64/evas/modules/image_savers/tiff/v-1.26/module.so
 /V3/usr/lib64/evas/modules/image_savers/webp/v-1.26/module.so
-/V3/usr/lib64/libecore.so.1
 /V3/usr/lib64/libecore.so.1.26.3
-/V3/usr/lib64/libecore_audio.so.1
 /V3/usr/lib64/libecore_audio.so.1.26.3
-/V3/usr/lib64/libecore_con.so.1
 /V3/usr/lib64/libecore_con.so.1.26.3
-/V3/usr/lib64/libecore_evas.so.1
 /V3/usr/lib64/libecore_evas.so.1.26.3
-/V3/usr/lib64/libecore_file.so.1
 /V3/usr/lib64/libecore_file.so.1.26.3
-/V3/usr/lib64/libecore_imf.so.1
 /V3/usr/lib64/libecore_imf.so.1.26.3
-/V3/usr/lib64/libecore_imf_evas.so.1
 /V3/usr/lib64/libecore_imf_evas.so.1.26.3
-/V3/usr/lib64/libecore_input.so.1
 /V3/usr/lib64/libecore_input.so.1.26.3
-/V3/usr/lib64/libecore_input_evas.so.1
 /V3/usr/lib64/libecore_input_evas.so.1.26.3
-/V3/usr/lib64/libecore_ipc.so.1
 /V3/usr/lib64/libecore_ipc.so.1.26.3
-/V3/usr/lib64/libecore_wl2.so.1
 /V3/usr/lib64/libecore_wl2.so.1.26.3
-/V3/usr/lib64/libecore_x.so.1
 /V3/usr/lib64/libecore_x.so.1.26.3
-/V3/usr/lib64/libector.so.1
 /V3/usr/lib64/libector.so.1.26.3
-/V3/usr/lib64/libedje.so.1
 /V3/usr/lib64/libedje.so.1.26.3
-/V3/usr/lib64/libeet.so.1
 /V3/usr/lib64/libeet.so.1.26.3
-/V3/usr/lib64/libeeze.so.1
 /V3/usr/lib64/libeeze.so.1.26.3
-/V3/usr/lib64/libefl.so.1
 /V3/usr/lib64/libefl.so.1.26.3
-/V3/usr/lib64/libefl_canvas_wl.so.1
 /V3/usr/lib64/libefl_canvas_wl.so.1.26.3
-/V3/usr/lib64/libefreet.so.1
 /V3/usr/lib64/libefreet.so.1.26.3
-/V3/usr/lib64/libefreet_mime.so.1
 /V3/usr/lib64/libefreet_mime.so.1.26.3
-/V3/usr/lib64/libefreet_trash.so.1
 /V3/usr/lib64/libefreet_trash.so.1.26.3
-/V3/usr/lib64/libeina.so.1
 /V3/usr/lib64/libeina.so.1.26.3
-/V3/usr/lib64/libeio.so.1
 /V3/usr/lib64/libeio.so.1.26.3
-/V3/usr/lib64/libeldbus.so.1
 /V3/usr/lib64/libeldbus.so.1.26.3
-/V3/usr/lib64/libelementary.so.1
 /V3/usr/lib64/libelementary.so.1.26.3
-/V3/usr/lib64/libelput.so.1
 /V3/usr/lib64/libelput.so.1.26.3
-/V3/usr/lib64/libembryo.so.1
 /V3/usr/lib64/libembryo.so.1.26.3
-/V3/usr/lib64/libemile.so.1
 /V3/usr/lib64/libemile.so.1.26.3
-/V3/usr/lib64/libemotion.so.1
 /V3/usr/lib64/libemotion.so.1.26.3
-/V3/usr/lib64/libeo.so.1
 /V3/usr/lib64/libeo.so.1.26.3
-/V3/usr/lib64/libeo_dbg.so.1
 /V3/usr/lib64/libeo_dbg.so.1.26.3
-/V3/usr/lib64/libeolian.so.1
 /V3/usr/lib64/libeolian.so.1.26.3
-/V3/usr/lib64/libethumb.so.1
 /V3/usr/lib64/libethumb.so.1.26.3
-/V3/usr/lib64/libethumb_client.so.1
 /V3/usr/lib64/libethumb_client.so.1.26.3
-/V3/usr/lib64/libevas.so.1
 /V3/usr/lib64/libevas.so.1.26.3
-/V3/usr/lib64/libexactness_play.so.1
 /V3/usr/lib64/libexactness_play.so.1.26.3
-/V3/usr/lib64/libexactness_record.so.1
 /V3/usr/lib64/libexactness_record.so.1.26.3
 /usr/lib64/ecore/system/systemd/v-1.26/module.so
 /usr/lib64/ecore/system/upower/v-1.26/module.so
