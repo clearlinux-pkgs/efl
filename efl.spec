@@ -5,7 +5,7 @@
 #
 Name     : efl
 Version  : 1.26.3
-Release  : 41
+Release  : 42
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Summary  : zlib compression library
@@ -138,7 +138,7 @@ services components for the efl package.
 %prep
 %setup -q -n efl-1.26.3
 cd %{_builddir}/efl-1.26.3
-%patch1 -p1
+%patch -P 1 -p1
 pushd ..
 cp -a efl-1.26.3 buildavx2
 popd
@@ -148,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685499057
+export SOURCE_DATE_EPOCH=1686934668
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
