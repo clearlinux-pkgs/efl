@@ -6,3 +6,5 @@
 -Decore-imf-loaders-disabler=scim
 -Dglib=true
 -Dg-mainloop=true
+-Dbuild-tests=false
+-Dbuild-examples=false

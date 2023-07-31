@@ -5,7 +5,7 @@
 #
 Name     : efl
 Version  : 1.26.3
-Release  : 42
+Release  : 43
 URL      : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Source0  : https://download.enlightenment.org/rel/libs/efl/efl-1.26.3.tar.xz
 Summary  : zlib compression library
@@ -148,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686934668
+export SOURCE_DATE_EPOCH=1690831818
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -164,7 +164,9 @@ CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --
 -Devas-loaders-disabler=json \
 -Decore-imf-loaders-disabler=scim \
 -Dglib=true \
--Dg-mainloop=true  builddir
+-Dg-mainloop=true \
+-Dbuild-tests=false \
+-Dbuild-examples=false  builddir
 ninja -v -C builddir
 CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwl=true \
 -Dopengl=full \
@@ -173,7 +175,9 @@ CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS 
 -Devas-loaders-disabler=json \
 -Decore-imf-loaders-disabler=scim \
 -Dglib=true \
--Dg-mainloop=true  builddiravx2
+-Dg-mainloop=true \
+-Dbuild-tests=false \
+-Dbuild-examples=false  builddiravx2
 ninja -v -C builddiravx2
 
 %install
@@ -353,8 +357,6 @@ chmod -R -s %{buildroot}/
 /V3/usr/bin/elementary_test
 /V3/usr/bin/elm_prefs_cc
 /V3/usr/bin/embryo_cc
-/V3/usr/bin/emotion_test
-/V3/usr/bin/emotion_test-eo
 /V3/usr/bin/eolian_cxx
 /V3/usr/bin/eolian_gen
 /V3/usr/bin/ethumb
@@ -397,8 +399,6 @@ chmod -R -s %{buildroot}/
 /usr/bin/elementary_test
 /usr/bin/elm_prefs_cc
 /usr/bin/embryo_cc
-/usr/bin/emotion_test
-/usr/bin/emotion_test-eo
 /usr/bin/eo_debug
 /usr/bin/eolian_cxx
 /usr/bin/eolian_gen
@@ -550,15 +550,10 @@ chmod -R -s %{buildroot}/
 /usr/share/elementary/objects/test_prefs.epb
 /usr/share/elementary/objects/test_tab_pager.edj
 /usr/share/elementary/objects/test_tooltip.edj
-/usr/share/elementary/testdiff.diff
-/usr/share/elementary/testfile-windows.txt
-/usr/share/elementary/testfile-withblanks.txt
-/usr/share/elementary/testfile.txt
 /usr/share/elementary/themes/default.edj
 /usr/share/elua/checkme
 /usr/share/embryo/include/default.inc
 /usr/share/emotion/checkme
-/usr/share/emotion/data/theme.edj
 /usr/share/eo/gdb/eo_gdb.py
 /usr/share/eolian/include/ecore-1/efl_accelerate_interpolator.eo
 /usr/share/eolian/include/ecore-1/efl_app.eo
