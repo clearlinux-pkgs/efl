@@ -96,7 +96,7 @@ option('debug-threads',
 
 option('build-examples',
   type : 'boolean',
-  value : true,
+  value : false,
   description : 'Compile examples'
 )
 
@@ -108,7 +108,7 @@ option('build-tests',
 
 option('crypto',
   type : 'combo',
-  choices : ['gnutls', 'openssl'],
+  choices : ['openssl'],
   value : 'openssl',
   description : 'Which SSL Crypto library used in efl'
 )
@@ -195,8 +195,8 @@ option('unmount-path',
 option('evas-loaders-disabler',
   type : 'array',
   description : 'List of modular image/vector loaders to disable in efl',
-  choices : ['', 'gst', 'pdf', 'ps', 'raw', 'svg', 'rsvg', 'xcf', 'bmp', 'dds', 'eet', 'generic', 'gif', 'ico', 'jp2k', 'jpeg', 'pmaps', 'png', 'psd', 'tga', 'tgv', 'tiff', 'wbmp', 'webp', 'xpm', 'json', 'avif', 'heif'],
-  value : ['json', 'avif', 'heif']
+  choices : ['', 'gst', 'pdf', 'ps', 'raw', 'svg', 'rsvg', 'xcf', 'bmp', 'dds', 'eet', 'generic', 'gif', 'ico', 'jp2k', 'jpeg', 'pmaps', 'png', 'psd', 'tga', 'tgv', 'tiff', 'wbmp', 'webp', 'xpm', 'json', 'avif', 'heif', 'jxl'],
+  value : ['json', 'avif', 'heif', 'jxl']
 )
 
 option('ecore-imf-loaders-disabler',
@@ -381,4 +381,10 @@ option('max-fd-size',
   type : 'string',
   value : '8192',
   description : 'This is the maximim set of fds and thus maximum fd value allowed +1 in the ecore main loop handler'
+)
+
+option('docs',
+  type: 'boolean',
+  value: false,
+  description: 'Enable building C of documentation (Requires doxygen)'
 )

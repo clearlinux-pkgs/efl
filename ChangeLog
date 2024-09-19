@@ -1,1486 +1,1173 @@
-OUT OF DATE NOTICE:
--------------------
-With the start of the 1.9.x release cycle we now longer update the ChangeLog and rely on git log for
-this functionality. We keep however a NEWS files for a high level overview of changes in a new
-release which will be filled at the end of the release cycle.
+2016-12-15  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-12-01  Carsten Haitzler (The Rasterman)
+	* src/Makefile.am (include_HEADERS): Move graphemebreakdef.h to
+	EXTRA_DIST.
+	(EXTRA_DIST): Add graphemebreakdef.h and test_skips.h.
 
-        * 1.8 release
+2016-12-14  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-28  ChunEon Park (Hermet)
+	* src/linebreak.c: Adjust documentation comment.
+	* src/wordbreak.c: Ditto.
+	* src/graphemebreak.c: Ditto.
 
-        * Evas: If the line goes to the 0, 0 then it won't be updated. Now it's
-        fixed.
+2016-12-14  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-26  ChunEon Park (Hermet)
+	* Doxyfile (FULL_PATH_NAMES): Set to `NO'.
+	(DOT_IMAGE_FORMAT): Set to `svg'.
+	(SEARCHENGINE): Set to `YES'.
 
-        * Evas: Fix the memory corruption introduced by evas fonts_zero.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-26  Daniel Juyung Seo (SeoZ)
+	Update for the libunibreak 4.0 release.
+	* NEWS: Add information about libunibreak 4.0.
+	* Doxyfile (PROJECT_NUMBER): Change to `4.0'.
+	* configure.ac (AC_INIT): Change the library version to `4.0'.
+	* src/Makefile.am (libunibreak_la_LDFLAGS): Set the version-info to
+	`4:0:1'.
+	* src/unibreakbase.h (UNIBREAK_VERSION): Set to 0x0400.
 
-        * ecore anim: Fixed animator not working problem when source_set is
-        changed back and forth very fast.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-26  Cedric Bail
+	* src/Makefile.am (include_HEADERS): Add a missing file
+	graphemebreakdef.h.
 
-        * Evas: Allow fuzziness on the texture format returned by GL.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-25  Tom Hacohen
+	* bootstrap: Add a missing `--copy' argument to glibtoolize.
 
-        * Evas textblock: Fixed wrapping of lines ending with whites.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-25  ChunEon Park (Hermet)
+	* README.md: Update for grapheme break and links.
+	* LICENCE: Add Andreas Röver and update copyright information.
 
-        * Evas: Fix proxy render to update the proxies recursively. If a proxy
-        has proxies, all the chainged proxies should be updated recursively.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-21  ChunEon Park (Hermet)
+	* Doxyfile (EXCLUDE): Add `src/tests.c'.
 
-        * Edje: Fix to update map-enabled part when the edje object is moved.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-20  Cedric Bail
+	* src/wordbreak.c: Update Unicode version and link information.
+	* src/wordbreak.h: Ditto.
+	* src/wordbreakdef.h: Ditto.
+	* src/graphemebreak.c: Ditto.
+	* src/graphemebreak.h: Ditto.
+	* src/graphemebreakdef.h: Ditto.
 
-        * Eina: Fix a possible race condition during eina_file_close.
-        * Edje: Fix use of eina_hash_pointer to actually look at the pointer.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-19  Tom Hacohen
+	* src/linebreak.c: Remove `@version' and update copyright header.
+	* src/linebreak.h: Ditto.
+	* src/linebreakdef.c: Ditto.
+	* src/linebreakdef.h: Ditto.
+	* src/wordbreak.c: Ditto.
+	* src/wordbreak.h: Ditto.
+	* src/wordbreakdef.h: Ditto.
+	* src/graphemebreak.c: Ditto.
+	* src/graphemebreak.h: Ditto.
+	* src/graphemebreakdef.h: Ditto.
+	* src/unibreakbase.c: Ditto.
+	* src/unibreakbase.h: Ditto.
+	* src/unibreakdef.c: Ditto.
+	* src/unibreakdef.h: Ditto.
 
-        * Evas textblock: Fixed order of tags inserted with markup_app/prepend.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-05  Youngbok Shin
+	* src/Makefile.msvc: Add graphemebreak.c.
+	* src/graphemebreak.c: Add a workaround of stdbool.h for MSVC
+	versions earlier than 2013.
+	* src/graphemebreak.h: Make include order consistent.
+	* src/linebreak.c (ends_with): Make the code compile under C89.
 
-        * Edje: Add null checking for name of anchor and item in geometry get
-        functions.
+2016-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-11-03  Christophe Sadoine
+	* src/Makefile.gcc (CFILES): Add graphemebreak.c.
+	(graphemebreakdata): New phony target.
+	(GraphemeBreakProperty.txt): New target.
+	(distclean): Add WordBreakProperty.txt and GraphemeBreakProperty.txt
+	as well.
 
-        * Eet: Added EET_DATA_DESCRIPTOR_ADD_MAPPING_BASIC().
+2016-12-05  Tom Hacohen  <tom@stosb.com>
 
-2013-10-24  Sung W. Park (sung_)
+	* src/test_skips.h: New file.
 
-        * EvasGL: Fixed direct rendering mode not clipping to its clip region.
+2016-12-04  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-24  Youngbok Shin
+	Simpify implementation about RI pairing.
+	* src/linebreak.c (treat_first_char): Get rid of the special
+	processing in the first character.
+	(get_lb_result_lookup): Refactor implementation.
 
-        * Evas: Fix textblock rendering to properly set render operation on the
-        context.
+2016-12-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-18  Youngbok Shin
+	* tools/test.txt: Make a statement more precise.
 
-        * Evas: Fixed the textblock format to be drawn according to the glyph's
-        horizontal advance width.
+2016-12-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-15  ChunEon Park (Hermet)
+	* src/linebreak.c (get_lb_result_lookup): Simplify code and fix a
+	corner case about LB21a.
+	(treat_first_char): There is no need to treat first character of
+	Hebrew specially now.
 
-        * Evas: Fixed the map surface to be updated properly. By tranversing the
-        whole of the map target's tree, it decides to update the map
-        surface to be redrawn if one of the objects is changed except the
-        clipper itself.
+2016-12-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-15  ChunEon Park (Hermet)
+	* src/linebreakdef.h (struct LineBreakContext): Add new field
+	cLb30aRI.
+	* src/linebreak.c (lb_init_break_context): Initialize cLb30aRI.
+	(treat_first_char): Deal with leading RI.
+	(get_lb_result_lookup): Count RI characters and allow breaking
+	between each pair occurrence.
 
-        * Edje: Fixed memory leak in the edje map color transition.
+2016-12-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-11  Carsten Haitzler (The Rasterman)
+	* src/linebreak.c (baTable): Fix a few missing entries.
 
-        * Eina: deprecate/remove all the eina_error setting (and getting)
-        within efl no one uses it and it frankly it much more pain
-        than it's worth. the api's are still there, and efl api's still
-        fail as they did before.. they just don't ALSO set eina_error.
+2016-12-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-11  Cedric Bail
+	Fix test failure regarding Object Replacement Character (U+FFFC).
+	* src/linebreakdef.h (enum LineBreakClass): Move LBP_CB so that it
+	can be included in the pair table.
+	* src/linebreak.c (baTable): Add break action about LBP_CB.
+	(treat_first_char): Remove customization about LBP_CB.
+	(get_lb_result_simple): Ditto.
+	(get_lb_result_lookup): Change assertion about the maximum valid
+	baTable index.
 
-        * Eina: add Eina_Spinlock API,
-        use Eina_Spinlock in Eina_Log, replace Eina_Lock by Eina_Spinlock in
-        Eina_Stringshare, Eina_Chained_Mempool.
-        * Eet: replace Eina_Lock by Eina_Spinlock in Eet_Dictionnary.
-        * Evas: replace Eina_Lock by Eina_Spinlock in Evas_ScaleCache,
-        Evas_Async_Events and Image_Entry.
-        * Ecore: use Eina_Spinlock for Ecore_Thread.
+2016-11-29  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-10  Carsten Haitzler (The Rasterman)
+	* src/linebreak.c (ends_with): New static function.
+	(ENDS_WITH): New macro.
+	(resolve_lb_class): Use ENDS_WITH to make the code cleaner.
 
-        * Ecore-con: use dlopen/dlsym (eina_module) to load libcurl to
-        save memory (private pages) when not yet used by the process
+2016-11-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-10  Michael Bouchaud (yoz)
+	* src/linebreak.c (resolve_lb_class): Resolve LBP_CJ to LBP_NS if
+	lang ends with "-strict".
+	* src/tests.c: Use "-strict" in line breaking test.
 
-        * Emotion: add two events to trigger webcam plug and unplug
+2016-11-26  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-04  ChunEon Park (Hermet)
+	* .clang-format: `Modernize' the clang-format configuration with
+	Clang 3.8.
 
-        * Eina: fix eina_file_map_lines() to not drop of one character in the
-        last line.
+2016-11-26  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-10-02  Cedric Bail
+	* src/linebreak.c (get_lb_result_lookup): Fix an issue that
+	combining marks are not correctly dealt with.
 
-        * Eina: add eina_swap16(), eina_swap32(), eina_swap64().
+2016-11-23  Tom Hacohen  <tom@stosb.com>
 
-2013-10-02  Tom Hacohen
+	* src/wordbreak.c (set_wordbreaks): Fix to pass the test suite.
 
-        * Evas textblock: Use correct font underline properties when drawing
-        underlines.
+2016-11-22  Andreas Röver  <roever@users.sf.net>
 
-2013-10-01  Vincent Torri
+	Add grapheme breaking support.
+	* AUTHORS: Add `Andreas Röver'.
+	* src/Makefile.am (include_HEADERS): Add header files for grapheme
+	breaking.
+	(libunibreak_la_SOURCES): Add source files for grapheme breaking.
+	(distclean-local): Clean also `GraphemeBreakData.txt'.
+	(GraphemeBreakProperty.txt): New target.
+	(graphemebreakdata): New target.
+	* src/graphemebreak.c: New file.
+	* src/graphemebreak.h: New file.
+	* src/graphemebreakdef.h: New file.
+	* src/graphemebreakdata.c: New file.
+	* src/graphemebreakdata1.tmpl: New file.
+	* src/graphemebreakdata2.tmpl: New file.
+	* tools/graphemebreak_test.c: New file.
 
-        * Evas: add JPEG 2000 support.
+2016-11-22  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-09-25  Tom Hacohen
+	* src/tests.c: Adjust code style.
 
-        * Evas font: Make the evas_font_path_* functions apply to fontconfig
-        searches.
+2016-11-22  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-09-25  Tom Hacohen
+	* .clang-format: New file.
 
-        * Evas font: Use our own fontconfig configuration so we don't get
-        affected by changes made to the default fontconfig configuration.
+2016-11-22  Tom Hacohen  <tom@stosb.com>
 
-2013-09-06  Christophe Sadoine
+	* src/tests.c: Add a test suite (make check).
+	* Makefile.am: Ditto.
+	* src/Makefile.am: Ditto.
 
-        * Eet: Added EET_DATA_DESCRIPTOR_ADD_SUB_NESTED().
+2016-11-17  Tom Hacohen  <tom@stosb.com>
 
-2013-09-24  Jorge Zapata
+	* src/wordbreak.c: Update to Unicode 9.0.0.
+	* src/wordbreakdata.c: Ditto.
+	* src/wordbreakdef.h: Ditto.
 
-        * Eina: add a substraction in rectangles and more helpers,
-        add double_from/to and helper defines in f16p16.
+2016-11-16  Tom Hacohen  <tom@stosb.com>
 
-2013-09-12  Jihoon Kim
+	* src/wordbreak.c (set_wordbreaks): Fix handling of regional
+	indicators with utf-8/16.
 
-        * ecore_imf: Fix memory leak in scim immodule
+2016-11-03  Mikhail Polubisok  <m_polubisok@wargaming.net>
 
-2013-09-06  Cedric Bail
+	* src/linebreak.c (get_lb_result_lookup): Fix assertion test of max
+	available indices.
 
-        * Edje: Add border information to Image sets.
+2016-09-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-09-05  Cedric Bail
+	Update to Unicode 9.0.0.
+	* src/linebreak.c (baTable): Update according to Unicode 9.0.0.
+	* src/linebreakdef.h (enum LineBreakClass): Ditto.
+	* src/linebreakdata.c: Regenerate from LineBreak-9.0.0.txt.
+	* src/linebreak.h: Update comments.
+	* src/linebreakdef.c: Ditto.
 
-        * Evas: Add evas_object_smart_iterator_new().
+2016-08-24  Tom Hacohen  <tom@stosb.com>
 
-2013-09-04  Michael Bouchaud (yoz)
+	Make many structures const.
 
-        * fix edje_object_scale_set to be recursive
+	These structures should never be changed on runtime so they should
+	be marked as constant. This means the compiler can now warn us if we
+	make the mistake of trying to change any of them, but more
+	importantly, it gives the compiler more information about the nature
+	of these and therefor lets the linker map these structures to
+	read-only memory instead of read-write, which should improve page
+	deduplication in many cases and reduce overall system memory usage.
 
-2013-09-03  Tom Hacohen
+	This has reduced the number of dirty memory pages from 10 to 2,
+	which translates to 32KiB of memory saved per process linking to
+	libunibreak starting from the second process.
+	* src/linebreak.c (struct LineBreakPropertiesIndex): Mark member
+	variable lbp as const pointer.
+	(get_lb_prop_lang): Mark return value as const pointer.
+	(get_char_lb_class): Mark second parameter as const pointer.
+	(get_char_lb_class_lang): Ditto.
+	* src/linebreakdata.c (lb_prop_default): Mark as const.
+	* src/linebreakdata2.tmpl (lb_prop_default): Ditto.
+	* src/linebreakdef.c (lb_prop_English): Ditto.
+	(lb_prop_German): Ditto.
+	(lb_prop_Spanish): Ditto.
+	(lb_prop_French): Ditto.
+	(lb_prop_Russian): Ditto.
+	(lb_prop_Chinese): Ditto.
+	(lb_prop_lang_map): Ditto.
+	* src/linebreakdef.h (struct LineBreakPropertiesLang): Mark member
+	variable lbp as const pointer.
+	(struct LineBreakContext): Mark member variable lbpLang as const
+	pointer.
+	(lb_prop_default): Declare as const.
+	(lb_prop_lang_map): Ditto.
+	* src/wordbreak.c (get_char_wb_class): Mark second parameter as
+	const pointer.
+	* src/wordbreakdata.c (wb_prop_default): Mark as const.
+	* src/wordbreakdata1.tmpl (wb_prop_default): Ditto.
 
-        * Evas textblock: fixed an issue with markup_get and markup_to_utf8
-        behaving differently (markup_get was misbehaving).
+2015-12-20  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-09-02  Shinwoo Kim
+	Fix the issue that U+FFFC (Object Replacement Character) does not
+	break correctly after Hebrew letters.
+	* src/linebreak.c (get_lb_result_simple): Resolve `Contingent Break
+	Opportunity' to `Break Opportunity Before and After'.
 
-        * Ecore_Input_Evas: Check the state of last mouse event more properly.
+2015-11-11  novelplus  <novelplus@outlook.com>
 
-2013-08-29  Boris Faure
+	Update to Unicode 8.0.0.
+	* src/linebreak.c (baTable): Update according to Unicode 8.0.0.
+	* src/linebreakdata.c: Regenerate from LineBreak-8.0.0.txt.
+	* src/wordbreak.c: Update comments.
+	* src/wordbreakdata.c: Regenerate from WordBreakProperty-8.0.0.txt.
+	* tools/test.txt: Add more test text for new line-breaking rules.
+
+2015-05-18  Wu Yongwei  <wuyongwei@gmail.com>
+
+	* src/wordbreak.c: Eliminate a warning under the release build.
 
-        * Edje: export EFL_VERSION_MAJOR/MINOR when compiling edc files
+2015-05-18  Wu Yongwei  <wuyongwei@gmail.com>
+
+	* src/Makefile.gcc: Update for the new files unibreakbase.c and
+	unibreakdef.c.
+
+2015-05-14  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-29  Cedric Bail
+	* src/Makefile.msvc: Update for the new files unibreakbase.c,
+	unibreakbase.h, unibreakdef.c, and unibreakdef.h.
 
-        * Evas: add interceptor for focus_set.
+2015-05-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-28  Cedric Bail
+	Update for the libunibreak 3.0 release.
+	* NEWS: Add information about libunibreak 3.0.
+	* src/linebreak.c: Mark file version as 3.0.
+	* src/linebreak.h: Ditto.
+	* src/linebreakdef.c: Ditto.
+	* src/linebreakdef.h: Ditto.
+	* src/unibreakbase.c: Ditto.
+	* src/unibreakbase.h: Ditto.
+	* src/unibreakdef.c: Ditto.
+	* src/unibreakdef.h: Ditto.
+	* src/wordbreak.c: Ditto.
+	* src/wordbreak.h: Ditto.
+	* src/wordbreakdef.h: Ditto.
 
-        * Evas: use mmap/munmap to allocate surface.
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-27  Jaehyun Cho
+	* LICENCE: Update copyright information.
 
-        * Edje: Fix edje play sample parameter checking.
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-27  Tom Hacohen
+	* src/linebreakdata2.tmp: Remove the unnecessary inclusion of
+	"linebreak.h".
+	* src/linebreakdata.c: Ditto.
 
-        * Evas bidi: Fixed a bug causing BiDi not to work in some cases.
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-20  David Seikel (onefang)
+	Use extended regexp to simplify expressions.
+	* src/LineBreak1.sed: Simplify with extended regexp.
+	* src/LineBreak2.sed: Ditto.
+	* src/Makefile.am: Add `-E' to the command line of sed.
 
-        * Edje Lua: Check for both Lua 5.1 and 5.2.
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-13  Jihoon Kim
+	Make further clean-up for the 3.0 release.
+	* configure.ac (AC_INIT): Change the library version to `3.0'.
+	* Doxyfile (PROJECT_NUMBER): Change to `3.0'.
+	(EXCLUDE): Add the missing `src/' before `filter_dup.c'.
+	* src/wordbreakdata1.tmpl: Remove the inclusion of "linebreak.h".
+	* src/wordbreakdata.c: Ditto.
 
-        * Ecore_IMF: add ecore_imf_context_input_panel_on_demand_set/get()
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-09  Cedric Bail
+	* src/wordbreakdef.h: Include "unibreakdef.h".
 
-        * Edje: add edje_object_mmap_set().
+2015-04-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-08  Tom Hacohen
+	* purge: Make it remove `compile'.
 
-        * Evas textblock:  Make the ellipsis format the same as the surrounding.
+2015-04-18  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-07  Tom Hacohen
+	* src/unibreakdef.c: New file.
+	* src/unibreakdef.h: New file.
+	* src/wordbreak.c: Rename reference to `lb_get_next_char...' to
+	`ub_get_next_char...'.
+	* src/linebreak.c: Ditto.
+	(lb_get_next_char_utf8): Remove definition.
+	(lb_get_next_char_utf16): Ditto.
+	(lb_get_next_char_utf32): Ditto.
+	* src/linebreakdef.h: Include "unibreakdef.h".
+	(EOS): Remove definition.
+	(get_next_char_t): Remove typedef.
+	(lb_get_next_char_utf8): Remove declaration.
+	(lb_get_next_char_utf16): Ditto.
+	(lb_get_next_char_utf32): Ditto.
+	* src/Makefile.am (include_HEADERS): Add `unibreakdef.h'.
+	(libunibreak_la_SOURCES): Add `unibreakdef.c'.
+	(libunibreak_la_CFLAGS): Define to `-W -Wall'.
 
-        * Evas textblock: Use max ascent/descent at the edges of the textblock.
+2015-04-18  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-07  Chris Michael
+	* src/unibreakbase.c: New file.
+	* src/unibreakbase.h: New file.
+	* src/linebreak.c (linebreak_version): Remove definition.
+	* src/linebreak.h: Include "unibreakbase.h".
+	(linebreak_version): Remove declaration.
+	(LINEBREAK_VERSION): Remove definition.
+	(utf8_t): Remove typedef.
+	(utf16_t): Remove typedef.
+	(utf32_t): Remove typedef.
+	* src/wordbreak.h: Include "unibreakbase.h" instead of
+	"linebreak.h".
+	* src/Makefile.am (include_HEADERS): Add `unibreakbase.h'.
+	(libunibreak_la_SOURCES): Add `unibreakbase.c'.
+	(libunibreak_la_LDFLAGS): Set the version-info to `3:0:0'.
 
-        * EFL: Require at least version 1.2 of the various wayland libraries to
-        build EFL with wayland support.
+2015-04-13  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-08-02  Yury Usischev
+	* src/wordbreak.c: Update copyright and version information.
+	* src/wordbreak.h: Ditto.
+	* src/wordbreakdef.h: Ditto.
 
-        * Add neon optimizations for several scaling/map routines in evas
+2015-04-13  Tom Hacohen  <tom@stosb.com>
 
-2013-08-02  Cedric Bail
+	* src/wordbreakdef.h (enum WordBreakClass): Clean up and reorder.
 
-        * Evas: change mapping policy for image loader (RANDOM during header,
-        SEQUENTIAL or WILLNEED during pixels reading).
+2015-04-10  Tom Hacohen  <tom@stosb.com>
 
-2013-08-01  Cedric Bail
+	Don't ship internal header.
+	* src/Makefile.am (include_HEADERS): Remove `wordbreakdef.h'.
+	(EXTRA_DIST): Add `wordbreakdef.h'.
 
-        * Edje: faster load time for Edje_Object using Evas_Object_Textblocks
-        and many styles.
+2015-04-10  Tom Hacohen  <tom@stosb.com>
 
-2013-07-31  Carsten Haitzler (The Rasterman)
+	Update files according to UAX #29-29, for Unicode 7.0.0.
+	* src/wordbreak.c (set_wordbreaks): Take care of Hebrew letters.
+	* src/wordbreakdata.h (enum WordBreakClass): Add WBP_Hebrew_Letter,
+	WBP_Single_Quote, and WBP_Double_Quote.
+	* src/wordbreakdata.c: Regenerate from WordBreakProperty-7.0.0.txt.
 
-        * Fix efl to use key not keyname (so xmodmap works).
+2015-04-10  Tom Hacohen  <tom@stosb.com>
 
-2013-07-31  Cedric Bail
+	* src/sort_numeric_hex.py: Fix compatibility issue with new Python.
+	* src/Makefile.am (wordbreakdata): Fix word break data enum for
+	names with underscores.
+	* src/wordbreakdef.h (enum WordBreakClass): Correct WBP_Regional to
+	WBP_Regional_Indicator.
+	* src/wordbreak.c: Ditto.
+	* src/wordbreakdata.c: Ditto.
 
-        * Eina: add eina_file_refresh(), eina_file_virtualize() and
-        eina_file_virtual().
-        * Evas: use eina_file_virtualize() for evas_object_image_memfile_set().
-        * Emotion: fix backend priority order.
+2015-04-05  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-25  ChunEon Park (Hermet)
+	* src/linebreak.c: Make pointer alignment consistent.
+	* src/linebreak.h: Ditto.
+	* src/linebreakdef.h: Ditto.
 
-        * Evas: Skip the map rendering if all points are transparent.
+2015-04-05  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-24  Mike Blumenkrantz
+	* src/linebreak.h: Update copyright year and UAX information.
+	* src/linebreakdef.c: Ditto.
 
-        * Ecore-Evas: fix usage of underlying X window after it has received a
-        destroy event
+2015-04-05  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-22 Jiyoun Park
+	Implement rule LB21a, as introduced by Revision 28 of UAX #14.
+	* src/linebreakdef.h (struct LineBreakContext): Add new field
+	fLb21aHebrew.
+	* src/linebreak.c (treat_first_char): Initialize fLb21aHebrew
+	properly.
+	(lb_init_break_context): Clear fLb21aHebrew.
+	(get_lb_result_lookup): Apply rule LB21a and update fLb21aHebrew.
 
-        * Evas: fix infinite loop if app use ecore evas image
+2014-12-30  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-23  Yury Usischev
+	* src/linebreakdata.c: Regenerate from LineBreak-7.0.0.txt.
 
-        * Fix a long-standing off-by-1 in the C MUL4_SYM "simd" multiplier.
+2014-12-06  Mikhail Polubisok  <mpolubisok@gmail.com>
 
-2013-07-22 José Roberto de Souza
+	* src/linebreak.c (get_lb_result_lookup): Extend assertion condition
+	that has been wrong since Unicode 6.2.
 
-        * Edje: Refactor signal callbacks flags
+2014-09-19  Petr Filipsky  <philodej@gmail.com>
 
-2013-07-19  Cedric Bail
+	* src/LineBreak1.sed: Fix sed expression due to changed
+	LineBreak.txt file format.
 
-        * Edje: add threshold to draggable part.
+2014-05-24  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-18 José Roberto de Souza
+	* src/Makefile.gcc (TARGET): Change from `liblinebreak.a' to
+	`libunibreak.a'.
 
-        * Edje: Correctly set match flag in _edje_signal_callback_move_last()
-        * Fix size calculation of flags of signal callbacks
+2014-05-23  Christoph Junghans  <junghans@votca.org>
 
-2013-07-18  Mike Blumenkrantz
+	Fix `make install DESTDIR=...'.
+	* Makefile.am (install-exec-hook): Prefix `$(DESTDIR)/' before
+	`${libdir}'.
 
-        * Ecore-X: add ECORE_X_SYNC env variable for xlib backend
+2014-02-16  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-18  Cedric Bail
+	Following https://people.gnome.org/~walters/docs/build-api.txt, add
+	a quasi-standard autogen.sh, which generates `configure' and runs it
+	optionally.
+	* autogen.sh: New file.
 
-        * Edje: fix some logic in the fixed point path.
-        * Edje: improve accuracy of math part positionning.
+2014-02-12  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-17  Guillaume Friloux
+	* bootstrap: Remove the overkill bits and add back autoreconf.
+	* purge: Ensure config.cache is removed.
 
-        * Ecore_Con: fix ecore_con_server_timeout_set(). It was changing the
-        timeout value, but not the timer.
+2014-02-10  Tom Hacohen  <tom@stosb.com>
 
-2013-07-17  Mike Blumenkrantz
+	* bootstrap: Solve bootstrap problems found on Linux and Mac (thanks
+	to Nick Shvelidze and Christopher Baker).
 
-        * Ecore_X: add error messages for xlib, ECORE_X_ATOM_XDND_DIRECTSAVE0,
-        fix ecore_x_e_comp_pixmap_set to delete pixmap atom correctly
+2013-11-14  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-15  Mike Blumenkrantz
+	* src/linebreak.c: Add/update comments and doc comments.
+	(lb_init_breaking_class): Rename to treat_first_char.
+	(lb_classify_break_simple): Rename to get_lb_result_simple.
+	(lb_classify_break_lookup): Rename to get_lb_result_lookup.
+	(set_linebreaks): Remove an unused local variable.
 
-        * Ecore_X: fix BadMatch errors in ecore_x_image_get when requested
-        size was larger than XImage size
+2013-11-14  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-15  Cedric Bail
+	* src/linebreakdata.c: Regenerate from LineBreak-6.3.0.txt.
 
-        * Eet: Add support for EET_T_VALUE to serialize Eina_Value pointer.
+2013-11-13  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-11  Chris Michael
+	Fix compilation problems under MSVC.
+	* src/linebreak.c (lb_init_breaking_class): Remove `inline'.
+	(lb_classify_break_simple): Ditto.
+	(lb_classify_break_lookup): Ditto.
+	(lb_classify_break_lookup): Move local variable declaration before
+	assertions.
 
-        * Ecore_Evas: Added functions to retieve the pixmap depth, visual,
-        and colormap
+2013-11-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-11  Chris Michael
+	* src/Makefile.am (libunibreak_la_LDFLAGS): Set the version-info to
+	`2:0:1'.
 
-        * Ecore_Evas: Updated doxygen comments for pixmap functions
-        * Ecore_Evas: Check for valid interface pixmap_get function before
-        calling it.
-        * Ecore_Evas: Removed need for prev_front pixmap field in structure and
-        just use a temporary variable.
+2013-11-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-10  Cedric Bail
+	* src/linebreakdef.c: Adjust the order of code.
+	(lb_process_next_char): Make its return type int.
+	* src/linebreak.c (lb_process_next_char): Ditto.
 
-        * Eina: Add eina_tiler_empty.
+2013-11-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-08  Chris Michael
+	* src/linebreak.c: Make minor changes in doc comments, formatting,
+	and names.
+	* src/linebreakdef.c: Ditto.
 
-        * Ecore_Evas: Added pointer abtractions (requested by Mike)
+2013-11-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-08  Chris Michael
+	* AUTHORS: Add `Petr Filipsky'.
 
-        * Ecore_Evas: Added functions got software_x11 and gl_x11 engines to
-        create new ecore_evas which uses just a pixmap (no window).
-        - add ecore_evas_software_x11_pixmap_new
-        - add ecore_evas_gl_x11_pixmap_new
-        - add ecore_evas_software_x11_pixmap_get
-        - add ecore_evas_gl_x11_pixmap_get
+2013-11-10  Petr Filipsky  <philodej@gmail.com>
 
-2013-07-08  Mike Blumenkrantz
+	Expose low level line-breaking API for incremental processing.
+	* src/linebreak.h: Add prototype declarations for
+	lb_init_break_context and lb_process_next_char.
+	(struct LineBreakContext): New struct.
+	* src/linebreak.h (LINEBREAK_UNDEFINED): New macro constant.
+	(lb_init_breaking_class): New static function.
+	(lb_classify_break_simple): New static function.
+	(lb_classify_break_lookup): New static function.
+	(lb_init_break_context): New function.
+	(lb_process_next_char): New function.
+	(set_linebreaks): Implement with lb_init_break_context and
+	lb_process_next_char.
 
-        * Eina: add eina_tiler_area_size_get
+2013-11-05  Petr Filipsky  <philodej@gmail.com>
 
-2013-07-06  Carsten Haitzler (The Rasterman)
+	* src/wordbreakdef.h (enum WordBreakClass): Update according to
+	Table 3 of Unicode Standard Annex 29, Revision 23.
 
-        * Eina: Add direct eina file map populate controls
+2013-09-30  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-04  Cedric Bail
+	Update for the libunibreak 1.1 release.
+	* configure.ac (AC_INIT): Change the library version to `1.1'.
+	* Doxyfile (PROJECT_NUMBER): Change to `1.1'.
+	* Makefile.am (EXTRA_DIST): Add the `tools' directory.
+	* NEWS: Add information about libunibreak 1.1.
+	* src/Makefile.am (libunibreak_la_LDFLAGS): Set the version to `1:1'.
 
-        * Eina: add eina_tiler_area_size_set and eina_tiler_strict_set to
-        make Eina_Tiler in par with Evas_Tilebuf.
+2013-09-29  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-03  Shinwoo Kim
+	* src/Makefile.msvc: Modernize obsolete/deprecated MSVC options.
 
-        * Ecore: add atoms - enable, disable - to support accessibility
+2013-09-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-02  ChunEon Park (Hermet)
+	* src/wordbreak.c: Update copyright year and UAX information.
+	* src/wordbreak.h: Ditto.
+	* src/wordbreakdef.h: Ditto.
 
-        * Evas: optimize proxy rendering. Rendering performance is increased
-        up to 2x in some cases.
+2013-09-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-07-02  Cedric Bail
+	Fix the errors caused by libtool 2.4 (really annoying to the level
+	of WTF for making me add the foolish dependency on m4).
+	* Makefile.am (ACLOCAL_AMFLAGS): Add `-I m4'.
+	* bootstrap: Add a line to execute autoreconf.
+	* configure.ac (AC_CONFIG_MACRO_DIR): Set to `[m4]'.
+	* purge: Make it remove also the m4 directory.
 
-        * Eet: force thread to always run during eet_cache_concurrency test.
+2013-09-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-25  Tom Hacohen
+	* Makefile.am (EXTRA_DIST): Add `README.md'.
 
-        * Evas textblock: Fixed issue when parsing formats with quotes.
+2013-09-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-28  Jiyoun Park
+	* README.md: New Markdown version of README.
+	* README: Remove.
 
-        * Evas: Fix jpeg loader cannot deal with exif information correctly
+2013-05-13  Tom Hacohen  <tom@stosb.com>
 
-2013-06-26  Daniel Willmann
+	Update files according to UAX #29-21, for Unicode 6.2.0.
+	* README: Update the reference to UAX #29-21.
+	* src/wordbreak.c (set_wordbreaks): Update for WBP_Regional.
+	* src/wordbreakdef.h (WBP_Regional): New enumerator for the new
+	property `RI' as defined in UAX #29-21.
+	* src/wordbreakdata.c: Regenerate from WordBreakProperty-6.2.0.txt.
 
-        * Evas: Fix evas_common_convert_yuv_42* functions to actually return
-        the converted data.
+2013-05-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-25  Tom Hacohen
+	* src/Makefile.am (install-exec-hook): Make sure `--disable-static'
+	can work (thanks to Eugene V. Lyubimkin).
 
-        * Evas textblock: Fixed issue with textblocks without fonts segfaulting.
+2012-10-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-24  Cedric Bail
+	Update files according to UAX #14-30, for Unicode 6.2.0.
+	* README: Update the reference to UAX #14-30.
+	* src/linebreak.c (baTable): Update for the new class `RI'.
+	* src/linebreak.h (LINEBREAK_VERSION): Set to 0x0202.
+	* src/linebreakdef.h (LBP_RI): New enumerator for the new class `RI'
+	as defined in UAX #14-30.
+	* src/linebreakdata.c: Regenerate from LineBreak-6.2.0.txt.
 
-        * Evas: add support for asynchronously uploading GL texture.
+2012-10-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-22  Thiep Ha
+	* src/linebreak.c (baTable): Correct the issue that one column was
+	missing in the table.
 
-        * Edje: Move cursor to correct position when selection handlers are pressed.
+2012-10-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-20  Christophe Sadoine
+	* README: Update to reflect the recent changes.
 
-        * Evil: Added strsep function.
+2012-10-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-19  Cedric Bail
+	Make `make linebreakdata' and `make wordbreakdata' work again.
+	* src/Makefile.am (EXTRA_DIST): Add missing `filter_dup.c'.
+	(linebreakdata): New make target.
+	(wordbreakdata): New make target.
 
-        * Evas: optimized path for when map use the same color for all corner.
+2012-10-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-19  Christophe Sadoine
+	Make `make dist' work again after the directory adjustment.
+	* Doxyfile (INPUT): Change to `src'.
+	(FILE_PATTERNS): Set to `*.c *.h'.
+	* Makefile.am (EXTRA_DIST): Move content from src/Makefile.am.
+	(doc): Move target from src/Makefile.am.
+	* src/Makefile.am (EXTRA_DIST): Move partial content to Makefile.am.
+	(doc): Move target to Makefile.am.
 
-        * Evil: Added evil_rename function, a wrapper around rename().
+2012-09-16  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-18  Cedric Bail
+	Update files according to UAX #14-28, for Unicode 6.1.0.
+	* README: Update the reference to UAX #14-28.
+	* src/linebreak.c (baTable): Update for the new class `HL'.
+	(resolve_lb_class): Resolve the new class `CJ' to `ID' (simplified).
+	* src/linebreakdef.h (LBP_HL): New enumerator for the new class `HL'
+	as defined in UAX #14-28.
+	(LBP_CJ): New enumerator for the new class `CJ' as defined in
+	UAX #14-28.
+	* src/linebreakdata.c: Regenerate from LineBreak-6.1.0.txt.
 
-        * Evas: Use Eo array of callbacks to reduce edje memory foot print of
-        Evas_Object_Box and Evas_Object_Table.
+2012-08-13  Tom Hacohen  <tom@stosb.com>
 
-2013-06-17  Sung W. Park (sung_)
+	Move source files to under src.
+	* Makefile.am: Split from original Makefile.am.
+	(SUBDIRS): Add `src'.
+	* configure.ac (AC_CONFIG_SRCDIR): Add `src/' before `linebreak.c'.
+	(AC_CONFIG_FILES): Add `src/Makefile'.
+	* src/LineBreak1.sed: Move from LineBreak1.sed.
+	* src/LineBreak2.sed: Move from LineBreak2.sed.
+	* src/Makefile.am: Split from Makefile.am
+	* src/Makefile.gcc: Move from Makefile.gcc.
+	* src/Makefile.msvc: Move from Makefile.msvc.
+	* src/filter_dup.c: Move from filter_dup.c.
+	* src/linebreak.c: Move from linebreak.c.
+	* src/linebreak.h: Move from linebreak.h.
+	* src/linebreakdata.c: Move from linebreakdata.c.
+	* src/linebreakdata1.tmpl: Move from linebreakdata1.tmpl.
+	* src/linebreakdata2.tmpl: Move from linebreakdata2.tmpl.
+	* src/linebreakdata3.tmpl: Move from linebreakdata3.tmpl.
+	* src/linebreakdef.c: Move from linebreakdef.c.
+	* src/linebreakdef.h: Move from linebreakdef.h.
+	* src/sort_numeric_hex.py: Move from sort_numeric_hex.py.
+	* src/wordbreak.c: Move from wordbreak.c.
+	* src/wordbreak.h: Move from wordbreak.h.
+	* src/wordbreakdata.c: Move from wordbreakdata.c.
+	* src/wordbreakdata1.tmpl: Move from wordbreakdata1.tmpl.
+	* src/wordbreakdata2.tmpl: Move from wordbreakdata2.tmpl.
+	* src/wordbreakdef.h: Move from wordbreakdef.h.
 
-        * Evas: add partial rendering support for Evas_GL direct rendering
+2012-08-12  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-17  Cedric Bail
+	* README: Change the home URL to github; remove $Id$; eliminate
+	non-ASCII characters.
 
-        * Edje: Use Eo array of callbacks to reduce edje memory foot print.
+2012-08-11  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-13  Jiyou Park
+	Update for the libunibreak 1.0 release.
+	* configure.ac (AC_INIT): Change the library name and version to
+	`libunibreak' and `1.0'.
+	(AC_PROG_LN_S): New macro.
+	(AC_OUTPUT): Change to `libunibreak.pc'.
+	* Doxyfile (PROJECT_NAME): Change to `libunibreak'.
+	(PROJECT_NUMBER): Change to `1.0'.
+	* LICENCE: Add copyright information about Tom Hacohen.
+	* Makefile.am (lib_LTLIBRARIES): Change to `libunibreak.la'.
+	(pkgconfig_DATA): Change to `libunibreak.la'.
+	(libunibreak_la_LDFLAGS): Reset the version to `1:0'.
+	(install-exec-hook): Replace the static library liblinebreak.a with
+	a symlink to libunibreak.a.
+	* Makefile.msvc: Change the library name to `libunibreak', and the
+	output library to `unibreak.lib'.
+	* NEWS: Add information about libunibreak 1.0.
+	* README: Change the library name, and add information about word
+	break.
 
-        * Evas: Fix crash if app call image object update add after calling api
-        like fileset.
+2012-02-04  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-11  Carsten Haitzler (The Rasterman)
+	* wordbreak.h (WORDBREAK_INSIDEACHAR): Change from
+	WORDBREAK_INSIDECHAR.
+	* wordbreak.c (set_brks_to): Change `WORDBREAK_INSIDECHAR' to
+	`WORDBREAK_INSIDEACHAR'.
 
-        * Support qualcomm begin/end tile extension for partial update
+2012-01-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-06  ChunEon Park (Hermet)
+	* wordbreak.h: Change angle brackets to quotation marks (which
+	caused build errors).
 
-        * Edje: support edc map color set
+2012-01-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-05  Jiyou Park
+	* Makefile.gcc (CFILES): Add wordbreak.c.
+	(WordBreakProperty.txt): New target.
+	(wordbreakdata): New target.
 
-        * Evas: Fix gif cannot decode alpha value correctly.
+2012-01-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-04  Jean-Philippe Andre
+	* Makefile.am (liblinebreak_la_SOURCES): Remove wordbreakdata.c.
+	(EXTRA_DIST): Add wordbreakdata.c, wordbreakdata1.tmpl, and
+	wordbreakdata2.tmpl.
 
-        * Evas: improve stability of Evas_Cserve2.
+2012-01-19  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-04  Cedric Bail
+	* Makefile.msvc: Add wordbreak files.
 
-        * Evas: correctly detect if loader support asynchronous preloading.
-        * Eina: add eina_file_dup.
+2012-01-18  Tom Hacohen  <tom@stosb.com>
 
-2013-06-03  Ederson Desouza
+	Add word breaking support.
+	* AUTHORS: Add `Tom Hacohen'.
+	* Makefile.am (include_HEADERS): Add header files for word breaking.
+	(liblinebreak_la_SOURCES): Add source files for word breaking.
+	(sort_numeric_hex.py): Add `sort_numeric_hex.py'.
+	(distclean-local): Clean also `WordBreakData.txt'.
+	(WordBreakProperty.txt): New target.
+	(wordbreakdata): New target.
+	* sort_numeric_hex.py: New file.
+	* wordbreak.c: New file.
+	* wordbreak.h: New file.
+	* wordbreakdef.h: New file.
+	* wordbreakdata.c: New file.
+	* wordbreakdata1.tmpl: New file.
+	* wordbreakdata2.tmpl: New file.
 
-        * Add -1.0 value to text ellipsis -- for not ellipsizing it at all.
+2011-05-17  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-06-03  Carsten Haitzler (The Rasterman)
+	Add support for pkg-config (thanks to Tom Hacohen).
+	* liblinebreak.pc.in: New file.
+	* configure.ac (AC_OUTPUT): Add `liblinebreak.pc'.
+	* Makefile.am (pkgconfig_DATA): Set to `liblinebreak.pc'.
+	(pkgconfigdir): Set to `$(libdir)/pkgconfig'.
 
-        * Fix edje min size calc to propagate min size calcs to GROUP
-        items swallowed in automatically.
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-31  Carsten Haitzler (The Rasterman)
+	* README: Update the reference to UAX #14-26, for Unicode 6.0.0.
 
-        * Fix ascent/descent in textblock when fontsets are used to be
-        superset of all ascent/descents.
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-31  ChunEon Park (Hermet)
+	* configure.ac (AC_INIT): Increase the version to 2.1.
+	* Makefile.am (liblinebreak_la_LDFLAGS): Set the version-info to
+	`2:1'.
 
-        * Edje: support edc proxy.source_visible, proxy.source_clip
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-31  Jérémy Zurcher
+	* LICENCE: Update the copyright year.
 
-        * Added --enable-image-loader-xyz=yes|static|auto|no for all loaders
-        * compilation fail if not found and option set to yes or static
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-29  Carsten Haitzler (The Rasterman)
+	Update for the 2.1 release.
+	* Doxyfile (PROJECT_NUMBER): Set to `2.1'.
+	* NEWS: Add information about the 2.1 release.
+	* linebreak.h (LINEBREAK_VERSION): Set to `0x0201'.
+	* linebreak.h: Update comments.
+	* linebreak.c: Ditto.
+	* linebreakdef.h: Ditto.
+	* linebreakdef.c: Ditto.
 
-        * Fix evas gl partial swap to keep full re-render rects if
-        switching mode automatically.
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-29  Mike Blumenkrantz
+	* linebreakdata.c: Regenerate from LineBreak-6.0.0.txt.
 
-        * Added eina_str_convert_len() to work around broken eina_str_convert()
-        * Add ecore-x(cb) support for text/x-moz-url DND operations
+2011-05-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-28  ChunEon Park (Hermet)
+	* linebreak.c (set_linebreaks): Fix the assertion failure when
+	U+FFFC (OBJECT REPLACEMENT CHARACTER) appears at the beginning of a
+	line (thanks to Tom Hacohen).
 
-        * Fix textblock to render pre again if it needs to relayouting.
+2010-01-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-27  Jihoon Kim (jihoon)
+	* LICENCE: Update the copyright year.
 
-        * Add ECORE_IMF_INPUT_PANEL_LAYOUT_DATETIME layout
-        * Add EDJE_INPUT_PANEL_LAYOUT_DATETIME layout
+2010-01-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-24  Daniel Willmann
+	* NEWS: Add information about the 2.0 release.
 
-        * Fix srv->start_time (initialization missing). So now 
-        ecore_con_server_uptime_get() is working for plain TCP connections.
+2010-01-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-24  Guillaume Friloux
+	* Doxyfile (PROJECT_NUMBER): Set to `2.0'.
+	(HAVE_DOT): Set to `YES'.
 
-        * Fix use of ecore_con_server_client_limit_set() (counter never
-        decreased).
-        * Fix use of ecore_con_client_timeout_set() and
-        ecore_con_server_timeout_set() that makes timeout on connections
-        even if you sent data.
-        * Fix cl->start_time (initialization missing). So now 
-        ecore_con_client_uptime_get() is working.
+2010-01-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-22  David Seikel (onefang)
+	* linebreak.c: Update the version number in comment to 2.0.
+	* linebreak.h: Ditto.
+	* linebreakdef.c: Ditto.
+	* linebreakdef.h: Ditto.
 
-        * Edje Lua: Stop leaking evas objects in Lua.
+2009-12-17  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-22  Daniel Juyung Seo (SeoZ)
+	Change the values of enum BreakAction to the same length.
+	* linebreak.c (DIRECT_BRK): Rename to DIR_BRK.
+	(INDIRECT_BRK): Rename to IND_BRK.
+	(CM_INDIRECT_BRK): Rename to CMI_BRK.
+	(CM_PROHIBITED_BRK): Rename to CMP_BRK.
+	(PROHIBITED_BRK): Rename to PRH_BRK.
 
-        * Fix fd handler increase issue when ecore_pipe_add/del is called
-        repeatedly.
+2009-11-29  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-22  ChunEon Park (Hermet)
+	* Doxyfile (TAB_SIZE): Set to the correct size `4', as used in the
+	source files.
 
-        * Edje textblock: keep the text styles when new font by the text class
-        is applied.
+2009-11-29  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-20  Carsten Haitzler (The Rasterman)
+	Update files according to UAX #14-24, for Unicode 5.2.0.
+	* linebreak.c: Update comments about UAX #14.
+	* linebreak.h: Ditto.
+	* linebreakdef.c: Ditto.
+	* linebreakdef.h: Ditto.
+	(LBP_CP): New enumerator for the new `CP' class as defined in
+	UAX #14-24.
+	* linebreak.c (baTable): Update for the new class `CP'.
+	* linebreakdata.c: Regenerate from LineBreak-5.2.0.txt.
+	* README: Update the reference to UAX #14-24, for Unicode 5.2.0.
 
-        * Evas: Improve memory footpriny by only creating evasgl context on
-        demand.
+2009-05-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-18  Carsten Haitzler (The Rasterman)
+	* NEWS: Add information about the 1.2 release.
 
-        * Evas: Reduce waiting on gl so it cvan fully run async from cpu.
+2009-04-30  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-16  Tom Hacohen
+	Optimize the Doxygen output.
+	* linebreak.c (lb_prop_index): Adjust its definition format
+	slightly.
 
-        * Edje textblock: Fixed issue with quoted formats.
+2009-04-30  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-15  Carsten Haitzler (The Rasterman)
+	* Doxyfile (USE_WINDOWS_ENCODING): Remove obsolete tag.
+	(DETAILS_AT_TOP): Ditto.
+	(MAX_DOT_GRAPH_WIDTH): Ditto.
+	(MAX_DOT_GRAPH_HEIGHT): Ditto.
+	(REFERENCED_BY_RELATION): Set to `NO'.
+	(REFERENCES_RELATION): Ditto.
+	(EXCLUDE): Add `filter_dup.c'.
 
-        * Evas leak in dri/drm swapbuf removed
+2009-04-28  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-14  Jihoon Kim
+	* linebreak.c (lb_get_next_char_utf8): Fix the issue that the index
+	can point to the middle of a UTF-8 sequence if End of String (EOS)
+	is encountered prematurely (thanks to Nikolay Pultsin and Rick Xu).
+	(lb_get_next_char_utf16): Fix the issue that the index can point to
+	the middle of a UTF-16 surrogate pair if EOS is encountered
+	prematurely.
 
-        * Edje entry: return surrounding string until the start position of
-        selection
-        * ecore_imf: fix crash when ecore_imf_context_del is called in
-        ecore_imf_context_input_panel_callback_call
+2009-04-20  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-13  Thiep Ha
+	* linebreakdef.c (lb_prop_English): Remove the specialization of
+	right single quotation mark as closing punctuation mark, because it
+	can be used as apostrophe.
+	(lb_prop_Spanish): Ditto.
+	(lb_prop_French): Ditto.
 
-        * Edje: Added selection handlers to entry.
+2009-04-09  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-11  Jiyou Park
+	* Makefile.msvc: Make the `clean' target work on MSVC versions other
+	than 6.0; do not use precompiled header.
 
-        * Evas: Fix crash if app use native surface in wrong engine.
+2009-03-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-10  Carsten Haitzler (The Rasterman)
+	* linebreak.h: Correct the wrong date in the documentation comment.
+	* linebreakdef.h: Ditto.
 
-        * Fix string leak in evas dri/drm swapbuf
-        * Fix pulseaudio crash on exit in ecore_audio (leak instead).
-        * Fix eet_mmap to use caches for lookup so it shares with everyone
-        * Improve ecore_audio use of eo api to be more batching
-        * Fix edje multisense segv (free non-malloced data from eet).
+2009-02-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-10  Tom Hacohen
+	* configure.ac (AC_INIT): Increase the version to 2.0.
+	* Makefile.am (liblinebreak_la_LDFLAGS): Set the version-info to
+	`2:0'.
 
-        * Evas text: Fixed line size calculation when using multiple fonts.
+2009-02-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-10  ChunEon Park (Hermet)
+	* linebreak.h (LINEBREAK_VERSION): New macro.
+	(linebreak_version): New global constant declaration.
+	* linebreak.c (linebreak_version): New global constant definition.
 
-        * Evas: don't try blend on gl backened if the render option is COPY
+2009-02-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-08  Carsten Haitzler (The Rasterman)
+	Reduce namespace pollution.
+	* linebreak.c (get_lb_prop_lang): Mark as static.
+	(get_next_char_utf8): Rename to lb_get_next_char_utf8.
+	(get_next_char_utf16): Rename to lb_get_next_char_utf32.
+	(get_next_char_utf32): Rename to lb_get_next_char_utf32.
+	(is_breakable): Rename to is_line_breakable.
+	* linebreak.h (get_next_char_utf8): Remove the function prototype
+	declaration.
+	(get_next_char_utf16): Ditto.
+	(get_next_char_utf32): Ditto.
+	(is_breakable): Rename to is_line_breakable.
+	* linebreakdef.h (lb_get_next_char_utf8): Add the function prototype
+	declaration.
+	(lb_get_next_char_utf16): Ditto.
+	(lb_get_next_char_utf32): Ditto.
 
-        * Fix evas proxy_unset of NULL image.
-        * Fix x11 selection trailing nul byte in text
+2009-02-06  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-08  Mike Blumenkrantz
+	* NEWS: Add information about the 1.1 release.
 
-        * Edje: fix custom states for proxy parts
-        * Edje: add embryo fill support for proxy parts
+2009-01-02  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-07  Carsten Haitzler (The Rasterman)
+	* Makefile.am (EXTRA_DIST): Add the missing `LICENCE' file.
 
-        * Fix slowness in glmap/unmap buffer by default in evas gl engine
-        * Fix evas segv on image del if loader is NULL
-        * Fix evas swapregion rect to account for rotation
-        * Edje entry emtis signals on keydown/up for theme to use
+2008-12-31  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-07  Rafael Antognolli
+	* linebreak.c: Update the version number in comment to 1.0.
+	* linebreak.h: Ditto.
+	* linebreakdef.c: Ditto.
+	* linebreakdef.h: Ditto.
 
-        * Evas: Added evas_event_input_multi_up/down().
+2008-12-31  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-06  Rafael Antognolli
+	* NEWS: Update for the 1.0 release.
 
-        * Ecore/Wayland: Add ecore_wl_window_alpha_set/get().
-        * Ecore/Wayland: Fix alpha windows on EGL backend.
+2008-12-31  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-06  Cedric Bail
+	* README: Correct two typos.
 
-        * Evas: Remove SVG loader from inside the merged tree.
+2008-12-31  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-06  ChunEon Park (Hermet)
+	* README: Add the online URL reference.
 
-        * Evas: update the map smart members really when it needs to render.
+2008-12-30  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-05  Jiyoun Park (jypark)
+	* README: Update the reference to UAX #14-22, for Unicode 5.1.0.
 
-        * Ecore_Input_Evas: Fix ecore_input_evas didn't check the device id of
-        mouse event
+2008-12-13  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-05  Jiyoun Park (jypark)
+	Update files according to UAX #14-22, for Unicode 5.1.0.
+	* linebreak.c (baTable): Update according to Table 2 of UAX #14-22.
+	* linebreakdef.c (lb_prop_Spanish): Remove the unnecessary
+	customization for inverted marks in Spanish.
+	* linebreakdata.c: Regenerate from LineBreak-5.1.0.txt.
+	* linebreak.h: Update comment only.
+	* linebreakdef.h: Ditto.
 
-        * Evas: Fix gif loader can't load image which has normal frames and
-        error frames
+2008-12-12  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-04  Carsten Haitzler (The Rasterman)
+	* README: Update for the new build methods and better readability.
 
-        * Fix "always scissor" to not break map in evas gl engine.
+2008-12-12  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-03  Carsten Haitzler (The Rasterman)
+	* Makefile.msvc: Correct the inconsistent naming in the output
+	message.
 
-        * Turn on scissors always to abe able to to partual render on
-        some GL implementations properly.
+2008-12-12  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-03  Rafael Antognolli
+	* configure.ac (AM_INIT_AUTOMAKE): Mark `foreign'.
+	* bootstrap: New file.
+	* purge: New file.
+	* Makefile.gcc (purge): Remove this target.
 
-        * Evas: Added evas_event_input_mouse_move() for internal use only.
-        * Evas: Added evas_event_input_multi_move() for internal use only.
+2008-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-05-02  Carsten Haitzler (The Rasterman)
+	* NEWS: New file.
 
-        * Evas gl engine - dont map dri/drm buffer unless we are going
-        to render.
+2008-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-30  Carsten Haitzler (The Rasterman)
+	* AUTHORS: New file.
 
-        * Fix issue when wchar_t is signed and eina_unicode does
-        negative array lookups.
+2008-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-29  ChunEon Park (Hermet)
+	* Makefile.gcc (purge): New phony target to purge files generated by
+	autoconfiscation.
 
-        * Evas: Added evas_object_image_source_clip_set()/get().
+2008-12-10  Thomas Klausner  <tk@giga.or.at>
 
-2013-04-25  Carsten Haitzler (The Rasterman)
+	* configure.ac: New file.
+	* Makefile.am: New file.
 
-        * Add --with-api=XXX (both|legacy|eo)
+2008-12-10  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-25  Tom Hacohen
+	* Doxyfile (OUTPUT_DIRECTORY): Set to `doc'.
+	(ALPHABETICAL_INDEX): Set to `YES'.
 
-        * Evas textblock: Fixed line size calculation when using multiple
-        fonts.
+2008-12-09  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-25  Jihoon Kim
+	* Makefile.msvc: New file.
 
-        * Edje entry: remove duplicated ecore_imf_context_reset in adjusting
-        the selection
+2008-12-09  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-24  Carsten Haitzler (The Rasterman)
+	* Makefile: Remove (to become Makefile.gcc).
+	* Makefile.gcc: New file (was Makefile).
 
-        * Rejig 32bit eoid allocation to 5.5.12.
+2008-12-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-23  Carsten Haitzler (The Rasterman)
+	* linebreak.c: Adjust the comment that refers to Unicode Annex 14.
+	* linebreak.h: Ditto.
+	* linebreakdef.c: Ditto.
+	* linebreakdef.h: Ditto.
 
-        * Make eoid use mmaped tables from anonymous memory for safety.
-        * Rejig 64bit eoid allocation to use much less memory (11.11.12).
+2008-12-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-22  Mike Blumenkrantz
+	Use only POSIX basic regexp to ensure maximum portability (issues
+	have been found on Mac OS X, where GNU extensions do not work).
+	* LineBreak1.sed: Replace `[:xdigit:]' with `0-9A-F', and `\+' with
+	`\{1,\}'.
+	* LineBreak2.sed: Ditto.
 
-        * Evas: Fix recursive proxy image rendering to just render black
+2008-12-07  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-22  WooHyun Jung
+	* Makefile: Replace `*.exe' with `filter_dup$(EXEEXT)', since the
+	extension `.exe' is specific to Windows.
 
-        * Edje: When selected word exists, selection is cleared and cursor
-        remains on the current edje_entry by additional key input.
+2008-04-20  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-20  Carsten Haitzler (The Rasterman)
+	Add README and LICENCE files, as well as a Doxyfile to generate
+	documents.
+	* README: New file.
+	* LICENCE: New file.
+	* Doxyfile: New file.
+	* Makefile (doc): Add new phony target.
 
-        * Ecore-X: Fix selection parser to not use longs - wrong on
-        64bit as the rest of ecore-x keeps types to their REAL sizes (ints),
-        but xlib uses longs (change size - eg 64bit even though protocol-wise
-        the data is DEFINEd as 32bit)
+2008-04-04  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-18  Carsten Haitzler (The Rasterman)
+	Remove the English override for plus sign: it is better treated in
+	the text breaking program (see ../breaktext/ for an example).
+	* linebreakdef.c (lb_prop_English): Remove the line for plus sign.
 
-        * Fix nvidia texture from pixmap config depth match to be looser to
-        avoid non-matches.
-        * Fix evas gl engine to work in 16bpp nicely.
-        * Fix native surface to be more anal about depth matching.
-        * Fix eeze sensors to not segv on shutdown
+2008-03-29  Wu Yongwei <wuyongwei@gmail.com>
 
-2013-04-19  Jihoon Kim (jihoon)
+	* Makefile: Correct the dependency-making rules when OLDGCC=Y.
 
-        * Edje: Remove code to call ecore_imf_context_reset in case of pressing
-        ESC, Return key
+2008-03-23  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-14  Carsten Haitzler (The Rasterman)
+	* Makefile (clean): Do not remove *.exe and tags here.
+	(distclean): Remove *.exe and tags.
 
-        * Evas: Fix evas gl_x11 to use default depth when visual
-        matching so lower depth displays work
+2008-03-23  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-15  ChunEon Park (Hermet)
+	Remove the English override for solidus: it is better treated in the
+	text breaking program (see ../breaktext/ for an example).
+	* linebreakdef.c (lb_prop_English): Remove the line for solidus.
 
-        * Evas: If an object goes to be hidden without replacing the cur/prev
-        state info, the object context can be corrupted at the next show time.
-        Now it replaces the cur/prev in that rare case.
+2008-03-16  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-15 Tom Hacohen
+	Rename init_linebreak_prop_index to init_linebreak for future
+	safety; make visible certain functions that are potentially useful.
+	* linebreak.c (init_linebreak_prop_index): Rename to init_linebreak.
+	(get_next_char_t): Move to linebreakdef.h.
+	(get_next_char_utf8): Make non-static.
+	(get_next_char_utf16): Ditto.
+	(get_next_char_utf32): Ditto.
+	(set_linebreaks): Ditto.
+	* linebreak.h (init_linebreak_prop_index): Rename to init_linebreak.
+	(get_next_char_utf8): Add the function prototype.
+	(get_next_char_utf16): Ditto.
+	(get_next_char_utf32): Ditto.
+	* linebreakdef.h (get_next_char_t): Add the typedef.
+	(set_linebreaks): Add the function prototype.
 
-        * Evas textblock: Fixed a bug with deletion of ranges that end just
-        before a visual format.
+2008-03-16  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-14  Jiyoun Park
+	* Makefile (OLDGCC): Add support for GCC 2.95.3 (when OLDGCC=Y).
 
-        * Evas: fix gif bug related with scale down decode.
+2008-03-15  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-14  Jiyoun Park
+	* linebreak.c (set_linebreaks): Fix a bug that `==' was wrongly used
+	for `='.
 
-        * Evas: fix gif decoding bug related with background color.
+2008-03-05  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-14  ChunEon Park
+	Improve the performance by reducing the look-ups of the
+	language-specific line breaking properties array from the language
+	name (thanks to Nikolay Pultsin).
+	* linebreak.c (get_lb_prop_lang): New function.
+	(get_char_lb_class_lang): Change the second parameter from the
+	language name to the line breaking properties array.
+	(set_linebreaks): Look up the language-specific line breaking
+	properties array from the language name only once in one function
+	call.
 
-        * Evas: Don't update evas update area by the clipper if the image obj
-        visible is changed.
+2008-03-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-14  Carsten Haitzler (The Rasterman)
+	Make minor adjustments in code and comments.
+	* linebreak.c: Adjust the doc comments.
+	(init_linebreak_prop_index): Modify a conditional to make it more
+	robust and consistent.
+	* linebreakdef.c (lb_prop_lang_map): Replace the pointer
+	lb_prop_default with NULL, since the value is never used.
 
-        * Evas: Work around new intel Mesa/xorg bug where alpha
-        channel in NON-ARGB windows is not filled in with 0xff even if all the
-        code does things right.
+2008-03-03  Wu Yongwei  <wuyongwei@gmail.com>
 
-        2013-04-13  ChunEon Park
+	Accelerate get_char_lb_class for invalid Unicode code points.
+	* linebreak.c (get_char_lb_class): Adjust the conditionals so that
+	getting the line breaking class for an invalid code point is much
+	faster, which requires the array of line breaking properties be
+	sorted.
+	* linebreakdef.h: Adjust a comment that the array of line break
+	properties must be sorted.
 
-        * Evas: Don't be crashed even if the map image size is 0.
+2008-03-02  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-13  Jihoon Kim
+	Change the values of enum BreakAction to more complete forms.
+	* linebreak.c (INDRCT_BRK): Rename to INDIRECT_BRK.
+	(CM_INDRCT_BRK): Rename to CM_INDIRECT_BRK.
+	(CM_PROHIBTD_BRK): Rename to CM_PROHIBITED_BRK.
+	(PROHIBTD_BRK): Rename to PROHIBITED_BRK.
 
-        * Ecore_IMF: Add ecore_imf_input_panel_hide () API
-        * Ecore_IMF: Add ecore_imf_context_input_panel_event_callback_call, clear API
+2008-03-02  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-10  Rafael Antognolli
+	Implement a two-stage search in get_char_lb_class_default to
+	accelerate the overall performance, especially for non-Latin
+	languages.
+	* linebreak.c (LINEBREAK_INDEX_SIZE): New constant macro.
+	(struct LineBreakPropertiesIndex): New struct.
+	(lb_prop_index): New static variable.
+	(init_linebreak_prop_index): New function.
+	(get_char_lb_class_default): New function.
+	(get_char_lb_class_lang): Use get_char_lb_class_default.
+	* linebreak.h: Detect C++ and add extern "C" guard if necessary.
+	(init_linebreak_prop_index): Add the prototype declaration.
+	* linebreakdef.h: Adjust a comment.
 
-        * Ecore: Add support for double and triple click on Wayland.
+2008-03-02  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-10 Tom Hacohen (Tasn) Yakov Goldberg
+	Split/refactor the code; add (doc) comments.
+	* Makefile (CFILES): Add linebreakdata.c and linebreakdef.c.
+	* linebreak.c: Add and adjust comments.
+	(linebreakdef.h): Add include file.
+	(linebreakdata.c): Remove include file.
+	(EOS): Remove (now in linebreakdef.h).
+	(enum LineBreakClass): Ditto.
+	(struct LineBreakProperties): Ditto.
+	(lbpEnglish): Remove (now in linebreakdef.c as lb_prop_English).
+	(lbpGerman): Remove (now in linebreakdef.c as lb_prop_German).
+	(lbpSpanish): Remove (now in linebreakdef.c as lb_prop_Spanish).
+	(lbpFrench): Remove (now in linebreakdef.c as lb_prop_French).
+	(lbpRussian): Remove (now in linebreakdef.c as lb_prop_Russian).
+	(lbpChinese): Remove (now in linebreakdef.c as lb_prop_Chinese).
+	(struct LineBreakPropertiesLang): Remove (now in linebreakdef.h).
+	(lbpLangs): Remove (now in linebreakdef.c as lb_prop_lang_map).
+	(get_next_char_utf16): Make sure memory access not go beyond len.
+	* linebreak.h: Add copyright information and adjust comments.
+	(stddef.h): Add include file.
+	* linebreakdata.c (linebreak.h): Add include file.
+	(linebreakdef.h): Add include file.
+	(lbpDefault): Make global and rename to lb_prop_default.
+	* linebreakdata2.tmpl: Add two include files, a comment line, and
+	remove `static'.
+	* linebreakdef.c: New file.
+	* linebreakdef.h: New file.
 
-        * Evas textblock : Added split cursor for BiDi text
+2008-02-26  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-10  WooHyun Jung
+	* linebreak.c (lbpSpanish): New array for Spanish-specific data.
+	(lbpLangs): Update the index array for Spanish.
+	(resolve_lb_class): Resolve AmbIguous class to IDeographic in
+	Chinese, Japanese, and Korean.
 
-        * Edje: When cursor is located to each edge, entry now doesn't grab events for cursor movement.
+2008-02-26  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-10  Carsten Haitzler (The Rasterman)
+	* Makefile (LineBreak.txt): Add new rule to retrieve it from the Web
+	if it is not already there.
 
-        * Evas: Add glx buffer age support for automatic partial
-        redraw in glx.
-        * Evas: Support GLX_MESA_release_buffers extension to release
-        unused aux buffers.
+2008-02-23  Wu Yongwei  <wuyongwei@gmail.com>
 
-2013-04-09  Jérémy Zurcher (jeyzu)
-
-        * Eina: Add eina_inlist_first and eina_inlist_last
-
-2013-04-08  Tom Hacohen
-
-        * Evas font: Fix a bug with cluster size calculation with texts ending
-        with ligatures.
-
-2013-04-08  Carsten Haitzler (The Rasterman)
-
-        * Evas: Add control API for multiple outputs (non-functional).
-
-2013-04-05  Cedric Bail
-
-        * Evas: Fix over redrawing of Evas_Map when applied on smart object.
-
-2013-04-04  Jiyoun Park
-
-        * Evas font: fix font source have wrong current size.
-
-2013-04-04  Tom Hacohen
-
-        * Evas font: If OS/2 table is available and the font is demi-bold,
-        don't do runtime emboldment.
-
-2013-04-04  Yakov Goldberg
-
-        * Evas font: char position, returned by
-        evas_common_font_query_char_at_coords(),
-        depends on left/right half of char and its direction.
-
-2013-03-04  Cedric Bail
-
-        * Evas: fix crash with Buffer engine with non alpha output.
-
-2013-03-30  Cedric Bail
-
-        * Evil: Add mkdtemp.
-
-2013-03-29  Carsten Haitzler (The Rasterman)
-
-        * Fix edje entry to resepct filter callbacks and not clear
-        selections if filters filter out all contents.
-
-2013-03-28  Cedric Bail
-
-        * Ecore: automatically turn on systemd watchdog in Ecore main loop.
-
-2013-03-28  Carsten Haitzler (The Rasterman)
-
-        * Change evas_textblock_cursor_word_start() and
-        evas_textblock_cursor_word_end() to walk extra whitespaces when
-        moving up and down words that tends to look more like other
-        toolkits (gtk, qt). the docs dont specifically say the rules
-        on word finding, so being consistent is better i believe and
-        so we can assume the prior behavior is a bug.
-
-2013-03-27  Cedric Bail
-
-        * Eina: Add eina_log_timing.
-        * Ecore, Ecore_Audio, Ecore_Con, Ecore_Evas, Edje, Eet, Eio, Eo, Evas:
-        use eina_log_timing.
-
-2013-03-27  Jihoon Kim
-
-        * Add ecore_imf_context_input_panel_variation_set/get API.
-        * Add edje_object_part_text_input_panel_layout_variation_set/get API.
-
-2013-03-25  Cedric Bail
-
-        * Eina: add portable eina_file_mkstemp().
-        * Embryo: use eina_file_mkstemp().
-
-2013-03-22  Jiyoun Park (Jypark)
-
-        * Ecore_x: fix alpha set function not clear sync counter
-
-2013-03-22  Cedric Bail
-
-        * Edje: Add spread width and height in TABLE part.
-
-2013-03-20  Jérémy Zurcher (jeyzu)
-
-        * Eina: Add eina_list_shuffle
-
-2013-03-19  Mike Blumenkrantz
-
-        * Fix magic failure in eina_value_array_count when array has not been
-        allocated
-
-2013-03-16  Cedric Bail
-
-        * Remove Glew and Direct3d code from Ecore_Evas module.
-        * Add Eina_Log integration for systemd journal.
-
-2013-03-15  Carsten Haitzler (The Rasterman)
-
-        * Fix opengl-es 2.0 engine support to only use GL_UNPACK_ROW_LENGTH
-        if the correct gles extension exists.
-
-2013-03-14  Mike Blumenkrantz
-
-        * fix use of ecore_con_*_flush functions with unconnected objects
-        * fix setting of write flags on ecore-con servers during connect
-
-2013-03-13  Cedric Bail
-
-        * Edje: use Eina_Cow to reduce memory usage.
-
-2013-03-12  Jiyoun Park (Jypark)
-
-        * Ecore_x: fix bug not check data value when get deiconify message
-
-2013-03-11  Mike Blumenkrantz
-
-        * clean up gnutls session initialization
-
-2013-03-10  Cedric Bail
-
-        * Eeze: add a dummy implementation of libmount when it is not available.
-        * Ecore_Con: add systemd socket activation support
-        (ECORE_CON_SOCKET_ACTIVATE).
-        * Ecore: notify systemd that we are ready as soon as the main loop is
-        running.
-        * EFL: use HAVE_FCNTL to disable code using fcntl.
-
-2013-03-08  Igor Murzov
-
-        * Add WebP image saver.
-
-2013-03-07  Jiyoun Park (Jypark)
-
-        * Ecore_x: Add manual render code before deiconify
-
-2013-03-06  Jihoon Kim (jihoon)
-
-        * Edje entry: fix bug scroll works when PgDn, PgUp, Home, End key in
-        entry is pressed in preedit state
-
-2013-03-05  Jiyoun Park (Jypark)
-
-        * Ecore_x: Add atom related with indicator type.
-        It can support several types of indicator
-
-2013-03-05  Jiyoun Park (Jypark)
-
-        * Ecore_x: Fix dangling pointer problem related with shmget fail
-
-2013-03-04  Sung W. Park (sung_)
-
-        * Evas Evas_GL: removed resource surface/context pool in favor of
-        creating on-demand. resource surface/contexts are used for creating
-        GL resources for Evas_GL.
-
-2013-02-28  Tom Hacohen (TAsn)
-
-        * Evas textblock: Added proper size adjustments for "high" shaped texts.
-
-2013-02-28  Mike Blumenkrantz
-
-        * fix custom states for edje SPACER parts
-        * fix edje program filters
-
-2013-02-28  Cedric Bail
-
-        * eina_strlcat work with a NULL src.
-
-2013-02-26  Carsten Haitzler (The Rasterman)
-
-        * Fix evas GL common engine to have a shader to do oversampling on
-        downscaling. This makes quality much better and "at best"
-        equates to a 16 point sample (2x2 linear interpolation samples,
-        where a linear interpolation sample equates to a 2x2 sample). This
-        will have perfomance impact, but the quality is worth it and
-        makes it closer to software downscaling in quality. It supports
-        2x2, 2x1 and 1x2 oversampling. YUV not done, nor image mask
-        (font shaders not needed).
-
-2013-02-23  ChunEon Park (Hermet)
-
-        * Evas cache: remove the freed worker from the pthread worker list when
-        it's failed to create a new thread so as not to access it if a thread is
-        working newly.
-
-2013-02-21  Tom Hacohen (TAsn)
-
-        * Evas text: Fixed bug with the text object direction detection.
-        * Evas font: Fixed font run detection for specific cases with 2
-        different fonts in the middle of a run.
-
-2013-02-21  Carsten Haitzler (The Rasterman)
-
-        * Add ecore_x_dnd_self_begin() and ecore_x_dnd_self_drop() to
-        allow xdnd chatting to yourself (your source drag window).
-
-2013-02-20  Carsten Haitzler (The Rasterman)
-
-        * Fix ecore-x edid fetch to ftech 128, not 100 bytes.
-
-2013-02-20  Cedric Bail
-
-        * Properly report file not found in Edje.
-
-2013-02-19  Daniel Zaoui
-
-        * Fix Evas_Object_Text when LTR and RTL are used in the same paragraph.
-
-2013-02-18  Carsten Haitzler (The Rasterman)
-
-        * Fix edje edje_color_class_list() and edje_text_class_list() to
-        look at the correct hashes when returning.
-
-2013-02-17  Mike Blumenkrantz
-
-        * fix anchor clicked mouse signals for selection-enabled entries
-
-2013-02-16  Paulo C. A. Cavalcanti Jr
-
-        * Evas: add pixels_alpha_get to evas engine.
-
-2013-02-16  Cedric Bail
-
-        * Eina: improved Eina_Clist support for 64bits system.
-        * Evas: improved BMP support for 64bits system.
-
-2013-02-15  Tom Hacohen (TAsn)
-
-        * Edje textblock: Improved textblock fit and added support for
-        size_range.
-
-2013-02-15  Jiyoun Park (jypark)
-
-        * Add infrastructure to handle message between ecore and parent ecore in
-        Ecore_Evas.
-
-2013-02-14  Cedric Bail
-
-        * Reduce memory consumption of Edje program handler.
-
-2013-02-14  Jihoon Kim (jihoon)
-
-        * edje entry : fix bug not to display preedit string with
-        PREEDIT_TYPE_NONE style
-        * edje entry : Fix bug candidate word couldn't be selected with up/down
-        key in the preedit status
-
-2013-02-11  Stefan Schmidt
-
-        * Fix memory leak in error cases in ethumb.
-
-2013-02-08  Stefan Schmidt
-
-        * Fix memory leak in eina_xattr_value_ls.
-        * Fix memory leak in gstreamer_ecore_x_check
-
-2013-02-08  Tom Hacohen (TAsn)
-
-        * Evas textblock: Fixed a selection issue with different scripts and
-        bidi.
-
-2013-02-08  Guillaume Friloux
-
-        * Fix usage of Ecore_Con_Server's internal buffer.
-
-2013-02-08  Carsten Haitzler (The Rasterman)
-
-        * Fix ecore_x ecore_x_screen_is_composited/set() to work
-        properly on multihead.
-
-2013-02-07  Christopher Michael (devilhorns)
-
-        * Added ecore_x_randr_crtc_info_free function.
-
-2013-02-07  Christopher Michael (devilhorns)
-
-        * Added ecore_x_randr_crtc_info_get function.
-
-2013-02-07  Cedric Bail
-
-        * eina: Eina_Tiler now take tile size into account.
-
-2013-02-07  WooHyun Jung
-
-        * edje: Checking walking_callbacks for not removing patterns which are
-        still used.
-
-2013-02-06  Cedric Bail
-
-        * eina: fix map leak in Eina_File.
-
-2013-02-05  Eduardo Lima (Etrunko) <eduardo.lima@intel.com>
-
-        * ecore_wayland: Fix return type of function ecore_wl_outputs_get()
-
-2013-02-04  U. Artie Eoff (uartie) <ulysses.a.eoff@intel.com>
-
-        * ecore_wayland: Add #ifdef __cplusplus to Ecore_Wayland.h so the
-        API can be used by C++ programs.
-        * ecore_wayland: Add ecore_wl_registry_get
-        * ecore_wayland: Add ecore_wl_globals_get
-
-2013-02-04  Raphael Kubo da Costa <raphael.kubo.da.costa@intel.com>
-
-        * evas: Stop initializing and shutting Fontconfig down
-
-2013-02-04  Cedric Bail
-
-        * eina: counter measure denial of service on eina_hash function.
-
-2013-02-04  Jihoon Kim (jihoon)
-
-        * edje entry : Support &, < and > in preedit string.
-
-2013-02-02  Chidambar Zinnoury (ilLogict)
-
-        * Update French translation.
-
-2013-02-01  Mike Blumenkrantz
-
-        * added eet_data_descriptor_name_get()
-        * added eina_stringshare_refplace()
-
-2013-01-31  Guillaume Friloux
-
-        * Fix a memory leak in ecore_con_dns
-
-2013-01-31  Jihoon Kim (jihoon)
-
-        * edje entry : Remove ecore_imf_context_cursor_position_set in functions
-        related to selection.
-
-2013-01-30  Christopher Michael (devilhorns)
-
-        * Implement RandR 1.4 functions which were missing in our Ecore_X API
-
-2013-01-30  Christopher Michael (devilhorns)
-
-        * Deprecate ecore_x_randr_crtc_gamma_ramp_* functions.
-        * Added new ecore_x_randr_crtc_gamma_* functions that uses a proper
-        structure
-
-2013-01-29  Christopher Michael (devilhorns)
-
-        * Removed old ecore_x_randr code and replaced with new working code.
-
-2013-01-29  Carsten Haitzler (The Rasterman)
-
-        * Fix cache miss bug when edje cache hash is null, but cache
-        list may have entries.
-
-2013-01-29 Sumanth Krishna Mannam <sumanth.m@samsung.com>
-
-        * Prevent a crash even if an invalid object is swallowed into an
-        edje object.
-
-2013-01-28 Rafael Antognolli <antognolli@gmail.com>
-
-        * Ecore_Evas wayland-egl only renders now if last frame has
-        been presented.
-
-2013-01-28  Daniel Willmann <d.willmann@samsung.com>
-
-        * Use ecore_audio in edje-multisense
-
-2013-01-25  Jihoon Kim (jihoon)
-
-        * edje entry : Remove ecore_imf_context_reset, cursor update in mouse
-        move event because it's useless.
-        * edje entry : move ecore_imf_context_cursor_position_set from mouse
-        down event to mouse up event
-
-2013-01-24  Sung W. Park (sung_)
-
-        * Add EVAS_GL_DIRECT_MEM_OPT to enable on-demand fallback memory
-        allocation policy for EvasGL direct rendering.
-
-2013-01-24  Cedric Bail
-
-        * Don't over align data if they are already aligned.
-
-2013-01-22  Daniel Willmann <d.willmann@samsung.com>
-
-        * Fix evas gif loader to return the correct frame duration
-
-2013-01-22  Mike Blumenkrantz
-
-        * rebase dns.c against upstream
-
-2013-01-22  Sung W. Park (sung_)
-
-        * Applied on-demand memory allocation policy for Evas GL Surface
-        for direct rendering optimization.  For direct rendering in EvasGL,
-        it falls back to FBO rendering if the conditions are not met.  Before,
-        the fallback resources were created in the beginning but now they are
-        created and destroyed on need base.
-
-2013-01-21  Carsten Haitzler (The Rasterman)
-
-        * Fix xsync problem in ecore_x_image_get() where prior errors can get
-        caught.
-
-2013-01-18  Jihoon Kim (jihoon)
-
-        * edje entry: remove ecore_imf_context_reset in mouse up event because
-        it's useless.
-
-2013-01-18  Cedric Bail
-
-        * Ecore_Input_Evas: add infrastructure to handle buggy touchscreen by
-        using environment variable ECORE_INPUT_FIX and ECORE_INPUT_TIMEOUT_FIX.
-
-2013-01-17  Jihoon Kim (jihoon)
-
-        * Edje : cursor position and location will be passed when it's really
-        changed in case of mouse down, move, and up event
-
-2013-01-16  Carsten Haitzler (The Rasterman)
-
-        * Fixed pixman image wrapping to handle allocated size instead
-        of image size (unless allocated is 0/wrong).
-
-2013-01-15  ChunEon Park (Hermet) <hermet@hermet.pe.kr>
-
-        * Fix SIGFPE in evas map update if image size is 0.
-
-2013-01-15  Paulo Alcantara (pcacjr)
-
-        * Evas engines: Introduce multi_font_draw() function
-        * Evas textgrid: Change render to support multi_font_draw()
-
-2013-01-15  Tom Hacohen (TAsn)
-
-        * Evas textblock: Fixed issue and simplified cursor_geometry_get.
-        * Evas text: Fixed issue with horiz advance.
-        * Evas text utils: Fixed issue with no-harfbuzz bidi.
-
-2013-01-14  Daniel Willmann
-
-        * edje: Fix off-by-one errors when using alloca in various functions
-
-2013-01-14  Tom Hacohen (TAsn)
-
-        * Evas textblock: Fixed issue with line height when breaking on a
-        format.
-
-2013-01-14  Cedric Bail
-
-        * Fix bug in eio_file_map_new container set.
-
-2013-01-14  Albin Tonerre
-
-        * Fix endianess issue in Eet_Image.
-
-2013-01-13  Boris Faure (billiob)
-
-        * Fixed condition based on uninitialized value in ecore_x_selection
-        (both xlib and xcb).
-        * Fixed a leaked when no selection converter matches.
-
-2013-01-11  Tom Hacohen (TAsn)
-
-        * Static libs: Updated liblinebreak to libunibreak's latest version.
-        * Evas texblock: Fixed a bug with breaking after format items.
-
-2013-01-11  Cedric Bail
-
-        * Fix not up to date clip cache for Evas_Object_Text.
-
-2013-01-09  Jiyoun Park (jypark)
-
-        * Fix evas bmp loader code which deal with image size.
-
-2013-01-08  Gustavo Sverzut Barbieri (k-s)
-
-        * Fix eina_prefix_new() with debian multilib without magic check file.
-
-2013-01-08  Mike Blumenkrantz
-
-        * Fix efreet desktop command parsing of https
-
-2013-01-07  Sung W. Park (sung_)
-
-        * Pulled out evas gl backend binary shader file caching code from 
-        evas_gl_shader.c file and made an internal generic caching api in 
-        evas_gl_common.h for use in evas_gl code.
-        * Implemented evas_gl surface cap. caching code in gl backend to
-        accelerate the engine creation. 
-
-2013-01-07  Thomas Petazzoni
-
-        * Fix build of Evas XCB backend.
-
-2013-01-04  Jérémy Zurcher
-
-        * Improve eina_share string del speed by a maybe 5-15%.
-
-2013-01-03  Gustavo Sverzut Barbieri (k-s)
-
-        * Add eina_alloc.h to Eina.h to define alloca()
-        * Eeze: deprecated support for udev<148 and libmount<2.18
-
-2013-01-03  Cedric Bail
-
-        * Use Eina_File for evas png loader.
-
-2013-01-03  Carsten Haitzler (The Rasterman)
-
-        * Fixed ecore_con case where freeing server double-frees clients
-
-2013-01-03  Jérémy Zurcher
-
-        * Add eio_eet_sync symbols.
-
-2013-01-02  Carsten Haitzler (The Rasterman)
-
-        * Fixed evas_software_xlib_x_write_mask_line() issue - it was
-        finding a segment in the shm cache of the wrong size for masks!
-
-2013-01-02  Cedric Bail
-
-        * Use Eina_File for evas webp, gif, tiff and eet loader.
-        * Add eet_mmap to open an Eet file from an Eina_File.
-
-2012-12-31  Gustavo Sverzut Barbieri (k-s)
-
-        * Fixed eina_xattr_value_ls() an eina_xattr_value_fd_ls()
-        * Added eina_xattr_fd_get(), eina_xattr_fd_set(),
-        eina_xattr_del(), eina_xattr_fd_del(), eina_xattr_copy() and
-        eina_xattr_fd_copy()
-        * Added eina_file_copy()
-
-2012-12-24  Mike Blumenkrantz
-
-        * eina_magic_fail() now throws error messages on NULL pointers instead
-        of critical all efl object-freeing functions now take NULL without
-        crashing or erroring eio functions no longer crash when passed NULL and
-        throw errors accordingly
-
-2012-12-19  Gustavo Sverzut Barbieri (k-s)
-
-        * Fixed Evas RGBA_Image->flags.loaded for copied images.
-        * Fixed evas_object_image_is_inside() implementation.
-
-2012-12-19  Carsten Haitzler (The Rasterman)
-
-        * Fixed 24bpp issue with rendering in evas. It shows itself
-        only under qemu/kvm with the cirruse driver that I have found.
-        In this case the screen is really 24bpp packed and this case
-        just never comes up on any vaguely modern gfx system.
-        * Fixed 24bpp ximage convert back from 24bpp to 32bpp in
-        ecore-x. Only shows itself in qemu/kvm.
-
-2012-12-18  Gustavo Sverzut Barbieri (k-s)
-
-        * Fixed many memory problems with ecore_evas_extn
-
-2012-12-18  Leandro Pereira
-
-        * Add threaded renderer.
-        * Modify software_generic and gl_x11 to use threaded renderer.
-
-2012-12-17  Daniel Willmann
-
-        * Add EFL Audio API - ecore_audio
-
-2012-12-17  Leandro Pereira
-
-        * Get rid of unused `ref` field in RGBA_Image struct.
-        * Prepare soil to land threaded render.
-        * Use refcounted glyph arrays.
-        * Common code to draw lines, polygons, rectangles, maps,
-        and scaling.
-
-2012-12-13  Cedric Bail
-
-        * Fix potential segv in software engine native_set code.
-        * Fix uninitialized data in Evas OpenGL engine.
-
-2012-12-12  Daniel Willmann
-
-        * Fix possible buffer overflow in functions relying on EET_T_LAST.
-        * Fix possible memory corruption in xrandr EDID functions.
-
-2012-12-12  Cedric Bail
-
-        * Add ellipsis support in Evas_Object_Text.
-
-2012-12-12  ChunEon park <hermet@hermet.pe.kr>
-
-        * Fix the evas gl line incorrect position problem.
-
-2012-12-11  Cedric Bail
-
-        * Fix leak eet_pbkdf2_sha1 with OpenSSL.
-
-2012-12-10  Gustavo Sverzut Barbieri (k-s)
-
-        * Added ECORE_GETOPT_ACTION_BREAK to force breaking out of argument
-        parsing logic (will behabe same as GNU's "--", useful for xterm -e)
-
-2012-12-07  Cedric Bail
-
-        * Don't leak fd on exec.
-
-2012-12-07 Sung W. Park (sung_)
-
-        * Added EVAS_GL_LINE_NO_OFFSET_HACK to turn off the line coordinate
-        fiddling that was originally in the gl backend code. The offset
-        fiddling caused issues with some ARM target GPU drivers.
-        * Fixed polygon rendering bug in GL backend when there are cutouts.
-
-2012-12-05  Gustavo Sverzut Barbieri (k-s)
-
-        * Removed DirectFB support (both ecore_directfb, evas and ecore_evas).
-        * Removed XRender, WinCE, X11-16 and X11-8 ecore_evas support.
-        * Bumped gnutls version requirement to >= 2.11 (released in 2010).
-        * Bumped GNU/libc requirement to >= 2.4 for inotify (sys/inotify.h).
-
-2012-12-04  Gwanglim Lee
-
-        * Add window profile support:
-        * Add ecore_evas and ecore_x APIs to support the window profile.
-        * Implement window profile for ecore_evas_x, ecore_evas_extn_socket,
-        ecore_evas_extn_plug and ecore_evas_buffer.
-        * Deprecate ECORE_X_ATOM_E_PROFILE and ECORE_X_ATOM_E_PROFILE_LIST.
-        * Deprecate ecore_x_e_window_profile_list_set. Use
-        ecore_x_e_window_available_profiles_set instead.
-        * Deprecate ecore_x_e_window_profile_list_get. Use
-        ecore_x_e_window_available_profiles_get instead.
-        * Add ecore_evas_sub_ecore_evas_list_get API.
-
-2012-12-05  Cedric Bail
-
-        * Fix build of Ecore_Evas_Extn on Solaris 11.
-
-2012-11-30 Gustavo Sverzut Barbieri (k-s)
-
-        * Fix evas_object_box.c to properly reset size_hint_min to zero if
-        there are no objects packed into the box.
-
-2012-11-22 Paulo Alcantara (pcacjr)
-
-        * Add scalecache support to Cserve2
-
-2012-11-22  Sung W. Park (sung_)
-
-        * Fixed a bug where if an image object rendered using Evas GL
-        direct rendering and then another image object using Native
-        Surface rendering, there was a potential for it to fall into
-        the same direct rendering path.
-        * Fixed some minor Evas GL extension bugs that came from refactoring.
-
-2012-11-21  Carsten Haitzler (The Rasterman)
-
-        * Fixed leak in textblock and text props in general that made
-        textblock recalcs lead very badly. Required changed to textgrid
-        though a sit relied on the leaky behavior.
-
-2012-11-20  ChunEon Park (Hermet)
-
-        * Fix the evas memory leak - eina_rectangles allocated internally.
-
-2012-11-16  Sung W. Park (sung_)
-
-        * Fixed glGetIntegerv() in Direct Rendering mode for Evas GL
-        to properly handle GL_SCISSOR_BOX and GL_VIEWPORT parameters.
-
-2012-11-13  Carsten Haitzler (The Rasterman)
-
-        * Fixed GLX native surface handling to use glXChooseFBConfig.
-        This frixes a break in compositing on new intel mesa drivers.
-
-2012-11-12  Mike Blumenkrantz
-
-        * Add eina_list_last_data_get
-
-2012-11-10  Vincent Torri
-
-        * Fix build of eina_file on Solaris 10
-
-2012-11-09  Vincent Torri
-
-        * Fixed longstanding memset bug in evas box.
-
-2012-10-19  Cedric Bail
-
-        * Add eina_thread API.
-
-2012-10-19  Patryk Kaczmarek
-
-        * eina_stringshare_add_length return NULL when func args are wrong.
-
-2012-10-17  Carsten Haitzler (The Rasterman)
-
-        * Add eina_barrier API to cover pthread_barrier functionality
-        * Add eina_tmpstr_add() and eina_tmpstr_del().
-
-2012-10-04  Vincent Torri
-
-        * Update lz4 code to rev. 77. This fix compilation on NetBSD 5.0
-
-2012-10-31  Cedric Bail
-
-        * Add eet_list_entries().
-        * Add eet -l -v to give more information about an eet file.
-
-2012-09-27 Patryk Kaczmarek <patryk.k@samsung.com>
-
-        * Add eet file handle null checks to eet_data_write_cipher(),
-        eet_data_descriptor_decode_cipher(),
-        eet_data_descriptor_encode_cipher(), eet_data_xattr_cipher_get(),
-        eet_data_xattr_cipher_set().
-
-2012-09-27  Carsten Haitzler (The Rasterman)
-
-        * Fix return value of eina_mmap_safety_enabled_set() and
-        ensure future eina_mmap_safety_enabled_get() return right value
-        on success.
-
-2012-09-21  Carsten Haitzler (The Rasterman)
-
-        * Fix big endian bug with eet image handling and endianess swapping.
-
-2012-09-15  Vincent Torri
-
-        * Add DOCTYPE children to be parse in eina_simple_xml.
-
-2012-09-12 Patryk Kaczmarek <patryk.k@samsung.com>
-
-        * Add EINA_SAFETY checks for proper function arguments.
-        * Add check if given arguments (distance and coordinates) in eina_tiler
-        and eina_rectangle are not below zero
-        * Documentation for eina list specified and eina stringshare fixed
-
-2012-09-11  Cedric Bail
-
-        * Speedup Eina Rbtree Iterator by recycling memory instead of
-        massively calling malloc/free.
-
-2012-09-04  Roberto de Souza <zehortigoza@profusion.mobi>
-
-        * Fix EINA_INLIST_FOREACH_SAFE macro to work when inlist is not the
-        first item in the struct.
-
-2012-09-03  Igor Murzov
-
-        * Add WebP image loader.
+	Add files for linebreak.
+	* LineBreak1.sed: New file.
+	* LineBreak2.sed: New file.
+	* Makefile: New file.
+	* filter_dup.c: New file.
+	* linebreak.c: New file.
+	* linebreak.h: New file.
+	* linebreakdata.c: New file.
+	* linebreakdata1.tmpl: New file.
+	* linebreakdata2.tmpl: New file.
+	* linebreakdata3.tmpl: New file.
