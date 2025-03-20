@@ -9,5 +9,7 @@ libtbm
 libdri2
 iconv
 libavif
+libjxl
+libjxl_threads
 rlottie
 libheif

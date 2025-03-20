@@ -1,0 +1,39 @@
+From f667d7352ea8517c7f9933b38953a5c3a4b1ff25 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 20 Mar 2025 12:42:57 -0700
+Subject: [PATCH] Don't use gif or heif
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ src/lib/evas/meson.build | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/src/lib/evas/meson.build b/src/lib/evas/meson.build
+index 5bb4c75..fe7edad 100644
+--- a/src/lib/evas/meson.build
++++ b/src/lib/evas/meson.build
+@@ -6,12 +6,10 @@
+ 
+ png = dependency('libpng')
+ tiff = dependency('libtiff-4', required: get_option('evas-loaders-disabler').contains('tiff') == false)
+-giflib = cc.find_library('gif')
+ webp = dependency('libwebp', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+ webpdemux = dependency('libwebpdemux', version: ['>=0.5.0'], required: get_option('evas-loaders-disabler').contains('webp') == false)
+ libopenjp2 = dependency('libopenjp2', required: get_option('evas-loaders-disabler').contains('jp2k') == false)
+ libavif = dependency('libavif', required: get_option('evas-loaders-disabler').contains('avif') == false, version: '>= 0.8.2')
+-heif= dependency('libheif', required: get_option('evas-loaders-disabler').contains('heif') == false)
+ libjxl = dependency('libjxl', required: get_option('evas-loaders-disabler').contains('jxl') == false, version: '>= 0.6.2')
+ libjxl_threads = dependency('libjxl_threads', required: get_option('evas-loaders-disabler').contains('jxl') == false, version: '>= 0.6.2')
+ 
+@@ -20,8 +18,6 @@ evas_image_loaders_file = [
+      ['bmp',     'shared', []],
+      ['eet',     'static', [eet]],
+      ['generic', 'shared', [rt]],
+-     ['gif',     'shared', [giflib]],
+-     ['heif',    'shared', []],
+      ['ico',     'shared', []],
+      ['jpeg',    'static', [jpeg]],
+      ['jp2k',    'shared', [libopenjp2]],
+-- 
+2.47.1
+

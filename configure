@@ -2,7 +2,7 @@
 -Dopengl=full
 -Dembedded-lz4=false
 -Dnative-arch-optimization=false
--Devas-loaders-disabler=json
+-Devas-loaders-disabler=json,jxl,gif,heif
 -Decore-imf-loaders-disabler=scim
 -Dglib=true
 -Dg-mainloop=true
